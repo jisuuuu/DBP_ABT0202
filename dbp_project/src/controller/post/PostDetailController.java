@@ -16,7 +16,7 @@ public class PostDetailController implements Controller {
 		PostDAO post = new PostDAO();
 		request.setAttribute("post", post.findPost(post_id));
 		
-		return "/post/detail.jsp";
+		return "/post/show.jsp";
 	}
 
 }

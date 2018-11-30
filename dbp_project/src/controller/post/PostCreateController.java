@@ -30,23 +30,21 @@ public class PostCreateController implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		Post post = null;
 		
-//		링크 첨부할 경우
-//		if ( request.getParameter("file") == "") {
-//			post = new Post( 
-//					(String)session.getAttribute("user"), request.getParameter("post_title"), 
-//					request.getParameter("post_content"), request.getParameter("file_link"), 
-//					request.getParameter("usage") );
-//		}
-		
-		
+
 		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 		post = multipartRequest.post;
 		logger.debug(post.toString());
 
 		postDAO = new PostDAO();
 		postDAO.create(post);
+		Post p2 = postDAO.findPost2((String)session.getAttribute("user"), request.getParameter("post_title"), 
+					request.getParameter("post_content"));
 		
-		return "redirect:/main/main";		
+
+		request.setAttribute("post", p2);
+	
+//		return "/post/show.jsp";	
+		return "/main/main";
 	}
 
 }

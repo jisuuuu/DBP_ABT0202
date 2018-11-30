@@ -73,25 +73,13 @@
 			<div class="row">
 				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
 				
-				<img src="C:\Users\보람\Desktop\d\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\dbp_project\upload\blogo.png" alt="no!"/> 
+				<img src="<c:url value='/img/${post.thumnail}' />" alt="no!"/> 
 				
-				<!-- 이미지 왜 안 되는 걸까나 -->
 				
-					<img src="<%=post.getThumnail()%>" alt="nono">
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 				</figure>
 				<div class="col-lg-7 col-sm-8 featured-work">
 					<h2><%=post.getTitle()%></h2>
-					<P class="padding-b"><%=post.getContent() %>Writer :: <%=post.getConsumer_id() %></P>
+					<P class="padding-b"><%=post.getContent() %> <br>Writer :: <%=post.getConsumer_id() %></P>
 					<div class="featured-box">
 						<div class="featured-box-col1 wow fadeInRight delay-02s">
 							<i class="fa fa-magic"></i>

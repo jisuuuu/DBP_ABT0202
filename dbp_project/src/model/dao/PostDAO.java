@@ -119,4 +119,39 @@ public class PostDAO {
 			}
 			return null;
 		}
+		
+		
+		//글  불러오기2
+		public Post findPost2(String user_id, String Title, String Content) throws SQLException {
+			        String sql = "SELECT * " + "FROM POST " + "WHERE post_id = ? and title = ? and content = ?";
+			        Object[] param = new Object[] { user_id, Title, Content};
+					jdbcUtil.setSqlAndParameters(sql, param);	
+					
+					Post post = null;
+					
+					try {
+						ResultSet rs = jdbcUtil.executeQuery();				
+							
+						while (rs.next()) {
+							DateFormat df = new java.text.SimpleDateFormat("yyyy.MM.dd a h:mm");
+							Date utilDate = new java.util.Date(rs.getDate("upload_date").getTime());
+							String dateString = df.format(utilDate);
+							
+							post = new Post(
+								rs.getInt("post_id"), rs.getString("consumer_id"),
+								rs.getString("title"), rs.getString("content"),
+								rs.getString("post_file"), rs.getString("file_link"),
+								rs.getInt("down_count"), dateString, 
+								rs.getString("usage"), rs.getString("thumnail"));	
+											
+						}		
+						return post;					
+						
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					} finally {
+						jdbcUtil.close();		// resource 반환
+					}
+					return null;
+				}
 }

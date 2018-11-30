@@ -36,8 +36,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
 		String filename = ""; 
 		String thumnail = "";
 		
-		String filepath = "";
-		String thumpath = "";
+		
 	
 		boolean check = ServletFileUpload.isMultipartContent(request);
 		//전송된 데이터의 인코드 타입이 multipart 인지 여부를 체크한다.
@@ -45,7 +44,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
 		
 		if(check) {//파일 전송이 포함된 상태가 맞다면
 			ServletContext context = request.getServletContext();
-			String path = context.getRealPath("/upload");
+			String path = context.getRealPath("/img");
 			File dir = new File(path);
 			if(!dir.exists()) dir.mkdir();
 			//전송된 파일을 저장할 실제 경로를 만든다.
@@ -93,9 +92,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
                 			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
                 			File file = new File(dir, filename);
                 			item.write(file);
-                			filepath = dir + "\\" + filename;
-                			//파일을 upload 경로에 실제로 저장한다.
-                			//FileItem 객체를 통해 바로 출력 저장할 수 있다.
+                			
                 		}
                 		else if(item.getFieldName().equals("thumnail")) {
                  
@@ -104,7 +101,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
                     			thumnail = thumnail.substring(thumnail.lastIndexOf("\\") + 1);
                     			File file = new File(dir, thumnail);
                     			item.write(file);
-                    			thumpath = dir + "\\" + thumnail;
+                    			
 
                     		}
                 	}
@@ -122,7 +119,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
             
 			
 			post = new Post( (String)session.getAttribute("user"), post_title, 
-					post_content, file_link, filepath, usage, thumpath ); 
+					post_content, file_link, filename, usage, thumnail ); 
 			
 		}		
 	}
