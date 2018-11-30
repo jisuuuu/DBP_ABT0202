@@ -14,6 +14,7 @@ public class Post {
 	private String upload_date;
 	private String usage;
 	private String style;
+	private String thumnail;
 
 	public Post(int post_id) {
 		this.post_id = post_id;
@@ -26,9 +27,19 @@ public class Post {
 		this.file_link = file_link;
 		this.usage = usage;
 	}
+	
+	public Post(String consumer_id, String title, String content, String file_link, String post_file, String usage, String thumnail) {
+		this.consumer_id = consumer_id;
+		this.title = title;
+		this.content = content;
+		this.file_link = file_link;
+		this.post_file = post_file;
+		this.usage = usage;
+		this.thumnail = thumnail;
+	}
 
 	public Post(int post_id, String consumer_id, String title, String content, String post_file, String file_link,
-			int down_count, String upload_date, String usage) {
+			int down_count, String upload_date, String usage, String thumnail) {
 		this.post_id = post_id;
 		this.consumer_id = consumer_id;
 		this.title = title;
@@ -38,6 +49,7 @@ public class Post {
 		this.down_count = down_count;
 		this.upload_date = upload_date;
 		this.usage = usage;
+		this.thumnail = thumnail;
 	}
 
 	public int getPost_id() {
@@ -118,6 +130,18 @@ public class Post {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+	
+	public String toString() {
+		return String.valueOf(getPost_id());
+	}
+
+	public String getThumnail() {
+		return thumnail;
+	}
+
+	public void setThumnail(String thumnail) {
+		this.thumnail = thumnail;
 	}
 	
 	

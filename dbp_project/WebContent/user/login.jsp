@@ -124,5 +124,18 @@
 		
 	</div>
 	
+	
+	
+	
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-logo"><a href="#"><img src="<c:url value='/img/blogo.png' />" alt=""></a></div>
+			<span class="copyright">&copy; TEAM ABT All Rights Reserved</span>
+			<div class="credits">	
+				동덕여자대학교 데이터베이스프로그래밍<br>박보람 오소영 최지수
+			</div>
+		</div>
+	</footer>
+	
 </body>
 </html>

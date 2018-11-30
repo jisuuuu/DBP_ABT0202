@@ -14,8 +14,7 @@
 	<meta name="viewport" content="width=device-width, maximum-scale=1">
 
 	<title>데베프 프로젝트 에받템</title>
-	<link rel="icon" href="favicon.png" type="image/png">
-	<link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
+
 
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
@@ -64,7 +63,7 @@
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
 				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
 				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
-				<li class="blogo"><a href="#header"><img src="<c:url value='/img/small-logo.png' />" alt=""></a></li>
+				<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				<li><a href="<c:url value='/post/create/form' />">글작성</a></li>
 				
 				<!-- 로그인여부에 따라서 다름 -->
@@ -89,7 +88,7 @@
 		<!--main-section-start-->
 		<div class="container">
 			<h2>POWERPOINT TEMPLATES</h2>
-			<h6>템플릿 이용해서 발표 뽀개버리기-! 개꿀🍯</h6>
+			<h6>템플릿 이용해서 발표 뽀개버리기-! 개꿀🍯</h6><br>
 			<div class="portfolioFilter">
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">All</a></li>
@@ -109,11 +108,12 @@
 	  		while ( p.hasNext() ) {
 				Post post = (Post)p.next();
 %>		  	
-				<div class=" Portfolio-box <%=post.getUsage()%>">
-					<a href="<c:url value='/img/Portfolio-pic1.jpg' />">
-							<img src="<c:url value='/img/Portfolio-pic1.jpg' />" alt="">
-					</a>
-						<h2><%=post.getTitle()%></h2>
+				<div class="Portfolio-box <%=post.getUsage()%>">	
+					 <a href="<c:url value='/post/detail' />?postId=<%=post.getPost_id()%>">          
+  						<img src="<c:url value='/img/Portfolio-pic1.jpg' />" alt="">
+  					</a>         
+  						<h2><%=post.getTitle()%></h2>
+ 		
 				</div>
 <%
 	  }
@@ -148,10 +148,7 @@
 
 			});
 
-      $('.Portfolio-box').magnificPopup({
-        delegate: 'a',
-        type: 'image'
-      });
+			
 
 		});
 	</script>

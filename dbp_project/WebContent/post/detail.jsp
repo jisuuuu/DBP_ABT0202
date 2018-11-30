@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@page import="model.Post" %>
+<%@page import="java.util.*" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%
 	String curUserId = (String)session.getAttribute("user");
+ 	Post post = (Post)request.getAttribute("post");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@
 	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
 
-	<title>에받템 글작성</title>
+	<title>에받템</title>
 </head>
 <body>
 
@@ -60,89 +62,76 @@
 			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
 		</div>
 	</nav>
+	
+	
+	
+	
 
-
-	<section class="business-talking">
+<section class="main-section alabaster">
+		<!--main-section alabaster-start-->
 		<div class="container">
-			<h2>"A+" 받는 템플릿</h2>
+			<div class="row">
+				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
+				
+				<img src="C:\Users\보람\Desktop\d\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\dbp_project\upload\blogo.png" alt="no!"/> 
+				
+				<!-- 이미지 왜 안 되는 걸까나 -->
+				
+					<img src="<%=post.getThumnail()%>" alt="nono">
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</figure>
+				<div class="col-lg-7 col-sm-8 featured-work">
+					<h2><%=post.getTitle()%></h2>
+					<P class="padding-b"><%=post.getContent() %>Writer :: <%=post.getConsumer_id() %></P>
+					<div class="featured-box">
+						<div class="featured-box-col1 wow fadeInRight delay-02s">
+							<i class="fa fa-magic"></i>
+						</div>
+						<div class="featured-box-col2 wow fadeInRight delay-02s">
+							<h3>UPLOAD DATE</h3>
+							<p><%=post.getUpload_date() %> </p>
+						</div>
+					</div>
+					<div class="featured-box">
+						<div class="featured-box-col1 wow fadeInRight delay-04s">
+							<i class="fa fa-gift"></i>
+						</div>
+						<div class="featured-box-col2 wow fadeInRight delay-04s">
+							<h3>USAGE</h3>
+							<p><%=post.getUsage() %> </p>
+						</div>
+					</div>
+					<div class="featured-box">
+						<div class="featured-box-col1 wow fadeInRight delay-06s">
+							<i class="fa fa-dashboard"></i>
+						</div>
+						<div class="featured-box-col2 wow fadeInRight delay-06s">
+							<h3>DOWN COUNT</h3>
+							<p><%=post.getDown_count() %></p>
+						</div>
+					</div>
+					<a class="Learn-More" href="#">Learn More</a>
+				</div>
+			</div>
 		</div>
 	</section>
 	
 	
 	
-	<div class="container">
+	
+	
+	
+	
+	
 
-		<section class="main-section team" id="team">
-			
-			<div class="container">
-				<div class="row">
-					<form action="<c:url value='/post/create' />" method="post" role="form" class="contactForm" enctype="multipart/form-data">
-					
-						<div class="form-group">
-  							<label for="useage"> Usage list:</label>
-  							<select class="form-control" name="usage" id="usage">
-    							<option>u1</option>
-    							<option>u2</option>
-   								<option>u3</option>
-    							<option>u4</option>
-  							</select>
-						</div>
-					
-						<div class="form-group">
-							<input type="text" name="post_title" class="form-control input-text" id="post_title"
-								placeholder="제목입력" data-rule="maxlen:15"
-								data-msg="Please enter Post Title" />
-							<div class="validation"></div>
-						</div>
-			
-						<div class="form-group">
-  							<textarea class="form-control" rows="10" id="post_content" name="post_content"></textarea>
-						</div>
-						
-						<div class="form-group">
-							<input type="text" name="file_link" class="form-control input-text" id="file_link"
-								placeholder="file link"
-								data-msg="Please enter File Link" />
-							<div class="validation"></div>
-						</div>
-						
-						<div class="form-group">
-							<input type="file" name="file" class="form-control input-text" id="file" />
-							<div class="validation"></div>
-						</div>
-						
-						<div class="form-group">
-						<label for="thumnail"> thumnail</label>
-							<input type="file" name="thumnail" class="form-control input-text" id="thumnail" 
-							placeholder="thumnail"/>
-							<div class="validation"></div>
-						</div>
-				
-			
-						<div class="text-center">
-							<button type="submit" class="input-btn">작성완료</button>
-						</div>
-					</form>
-				</div>
-			</div>
-
-		</section>
-		
-	</div>
-	
-	
-	
-	
-	<footer class="footer">
-		<div class="container">
-			<div class="footer-logo"><a href="#"><img src="<c:url value='/img/blogo.png' />" alt=""></a></div>
-			<span class="copyright">&copy; TEAM ABT All Rights Reserved</span>
-			<div class="credits">	
-				동덕여자대학교 데이터베이스프로그래밍<br>박보람 오소영 최지수
-			</div>
-		</div>
-	</footer>
-	
-	
 </body>
 </html>

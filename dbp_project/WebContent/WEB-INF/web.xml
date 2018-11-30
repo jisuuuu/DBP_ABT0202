@@ -29,6 +29,11 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>MultipartHttpServletRequest</servlet-name>
+		<servlet-class>controller.post.MultipartHttpServletRequest</servlet-class>
+	</servlet>
+	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
