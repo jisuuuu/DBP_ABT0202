@@ -28,11 +28,12 @@ public class RequestMapping {
         mappings.put("/user/register/form", new ForwardController("/user/register.jsp"));
         mappings.put("/user/register_ok", new ForwardController("/user/register_ok.jsp"));
         
-        //post 관련
-        mappings.put("/post/create/form", new ForwardController("/post/create.jsp"));
+        //post 관련 
+        mappings.put("/post/create/form", new PostCreateController());
         mappings.put("/post/create", new PostCreateController());
         
-        //logger.info("Initialized Request Mapping!");
+        //임시 부트트스트랩 index 원본 
+        mappings.put("/boot", new ForwardController("bootstrap.jsp"));
     }
 
     public Controller findController(String uri) {	
