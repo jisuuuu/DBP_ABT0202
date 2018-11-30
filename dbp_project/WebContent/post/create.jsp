@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%
 	String curUserId = (String)session.getAttribute("user");
@@ -7,71 +7,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- ÇÕÃÄÁö°í ÃÖ¼ÒÈ­µÈ ÃÖ½Å CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- ºÎ°¡ÀûÀÎ Å×¸¶ -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- ÇÕÃÄÁö°í ÃÖ¼ÒÈ­µÈ ÃÖ½Å ÀÚ¹Ù½ºÅ©¸³Æ® -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
 
-<title>±ÛÀÛ¼º</title>
+	<link rel=stylesheet href="<c:url value='/css/style.css' />" type="text/css">
+	<link href="<c:url value='/css/bootstrap.css' />" rel="stylesheet" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/font-awesome.css' />" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/responsive.css' />" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/magnific-popup.css' />" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/animate.css' />" type="text/css">
+	
+	
+	<script type="text/javascript" src="<c:url value='/js/jquery.1.8.3.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/bootstrap.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery-scrolltofixed.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.easing.1.3.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.isotope.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/wow.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
+
+	<title>ì—ë°›í…œ ê¸€ìž‘ì„±</title>
 </head>
 <body>
 
-<h1>A+ ¹Þ´Â ÅÛÇÃ¸´</h1>
+	<nav class="main-nav-outer" id="test">
+		<div class="container">
+			<ul class="main-nav">
+				<li><a href="<c:url value='/main/main' />">ì—ë°›í…œ</a></li>
+				<li><a href="<c:url value='/user/list' />">ì‚¬ìš©ìžë¦¬ìŠ¤íŠ¸</a></li>
+				<li><a href="<c:url value='/boot' />">ë¶€íŠ¸ìŠ¤íŠ¸ëž© ì›ë³¸</a></li>
+				<li class="small-logo">
+					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/blogo.png' />" alt=""></a>
+				</li>
+				<li><a href="<c:url value='/post/create/form' />">ê¸€ìž‘ì„±</a></li>
+				
+				<!-- ë¡œê·¸ì¸ì—¬ë¶€ì— ë”°ë¼ì„œ ë‹¤ë¦„ -->
+				<c:choose>
+    				<c:when test='${sessionScope.user eq null}'>
+    					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
+      					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
+    				</c:when>
+    				<c:otherwise>
+      					<li><a><%=curUserId%>&nbsp;ë‹˜</a></li>
+      					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
+    				</c:otherwise>
+    			</c:choose>
 
-<!--  ³×ºñ°ÔÀÌ¼Ç¹Ù -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="<c:url value='/' />">¿¡ ¹Þ ÅÛ</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="<c:url value='/user/list' />">»ç¿ëÀÚ¸®½ºÆ®</a></li>
-      
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-    
-   
-   <c:choose>
-    	<c:when test='${sessionScope.user eq null}'>
-    		<li><a href="<c:url value='/user/register/form' />"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      		<li><a href="<c:url value='/user/login/form' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    	</c:when>
-    	<c:otherwise>
-      		<li><a><span class="glyphicon glyphicon-user"></span> <%=curUserId%>&nbsp;´Ô</a></li>
-      		<li><a href="<c:url value='/user/logout' />"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-    	</c:otherwise>
-    </c:choose>
-    </ul>
-  </div>
-</nav>
+			</ul>
+			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</nav>
 
-<h2>±ÛÀÛ¼º ÆäÀÌÁö</h2>
 
-<form action="<c:url value='/post/create' />" method="post" role="form" class="contactForm">
-			<div class="form-group">
-				<input type="text" name="post_title" class="form-control input-text" id="user_id"
-					placeholder="post_title" data-rule="maxlen:10"
-					data-msg="Please enter Post Title" />
-				<div class="validation"></div>
-			</div>
+	<section class="business-talking">
+		<div class="container">
+			<h2>"A+" ë°›ëŠ” í…œí”Œë¦¿</h2>
+		</div>
+	</section>
+	
+	
+	
+	<div class="container">
+
+		<section class="main-section team" id="team">
 			
-			<div class="form-group">
-  				<textarea class="form-control" rows="5" id="post_content" name="Post_content"></textarea>
-			</div>
+			<div class="container">
+				<div class="row">
+					<form action="<c:url value='/post/create' />" method="post" role="form" class="contactForm">
+					
+						<div class="form-group">
+  							<label for="useage"> Usage list:</label>
+  							<select class="form-control" name="usage" id="usage">
+    							<option>u1</option>
+    							<option>u2</option>
+   								<option>u3</option>
+    							<option>u4</option>
+  							</select>
+						</div>
+					
+						<div class="form-group">
+							<input type="text" name="post_title" class="form-control input-text" id="post_title"
+								placeholder="ì œëª©ìž…ë ¥" data-rule="maxlen:15"
+								data-msg="Please enter Post Title" />
+							<div class="validation"></div>
+						</div>
+			
+						<div class="form-group">
+  							<textarea class="form-control" rows="10" id="post_content" name="post_content"></textarea>
+						</div>
+						
+						<div class="form-group">
+							<input type="text" name="file_link" class="form-control input-text" id="file_link"
+								placeholder="file link"
+								data-msg="Please enter File Link" />
+							<div class="validation"></div>
+						</div>
+						
+						<div class="form-group">
+							<input type="text" name="file" class="form-control input-text" id="file" />
+							<div class="validation"></div>
+						</div>
 				
 			
-			
-
-
-			<div class="text-center">
-				<button type="submit" class="input-btn">ÀÛ¼º¿Ï·á</button>
+						<div class="text-center">
+							<button type="submit" class="input-btn">ìž‘ì„±ì™„ë£Œ</button>
+						</div>
+					</form>
+				</div>
 			</div>
-		</form>
 
+		</section>
+		
+	</div>
+	
+	
 </body>
 </html>

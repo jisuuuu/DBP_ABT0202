@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+import java.util.*;
+
 
 public class Post {
 	private int post_id;
@@ -10,16 +11,24 @@ public class Post {
 	private String post_file;
 	private String file_link;
 	private int down_count;
-	private Date upload_date;
+	private String upload_date;
+	private String usage;
+	private String style;
 
 	public Post(int post_id) {
-		super();
 		this.post_id = post_id;
 	}
+	
+	public Post(String consumer_id, String title, String content, String file_link, String usage) {
+		this.consumer_id = consumer_id;
+		this.title = title;
+		this.content = content;
+		this.file_link = file_link;
+		this.usage = usage;
+	}
 
-	public Post(String consumer_id, String title, String content, String post_file, String file_link,
-			int down_count, Date upload_date) {
-		super();
+	public Post(int post_id, String consumer_id, String title, String content, String post_file, String file_link,
+			int down_count, String upload_date, String usage) {
 		this.post_id = post_id;
 		this.consumer_id = consumer_id;
 		this.title = title;
@@ -28,6 +37,7 @@ public class Post {
 		this.file_link = file_link;
 		this.down_count = down_count;
 		this.upload_date = upload_date;
+		this.usage = usage;
 	}
 
 	public int getPost_id() {
@@ -86,11 +96,29 @@ public class Post {
 		this.down_count = down_count;
 	}
 
-	public Date getUpload_date() {
+	public String getUpload_date() {
 		return upload_date;
 	}
 
-	public void setUpload_date(Date upload_date) {
+	public void setUpload_date(String upload_date) {
 		this.upload_date = upload_date;
 	}
+
+	public String getUsage() {
+		return usage;
+	}
+
+	public void setUsage(String usage) {
+		this.usage = usage;
+	}
+
+	public String getStyle() {
+		return style;
+	}
+
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	
+	
 }

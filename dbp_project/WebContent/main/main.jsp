@@ -1,17 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@page import="model.Post" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%
-	@SuppressWarnings("unchecked") 
-	String curUserId = (String)session.getAttribute("user");
+ 	@SuppressWarnings("unchecked") 
+	List<Post> postList = (List<Post>)request.getAttribute("postList");
+ 	String curUserId = (String)session.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, maximum-scale=1">
 
-	<title>µ¥º£ÇÁ ÇÁ·ÎÁ§Æ® ¿¡¹ŞÅÛ</title>
+	<title>ë°ë² í”„ í”„ë¡œì íŠ¸ ì—ë°›í…œ</title>
 	<link rel="icon" href="favicon.png" type="image/png">
 	<link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
 
@@ -25,15 +27,16 @@
 	<link rel=stylesheet href="<c:url value='/css/magnific-popup.css' />" type="text/css">
 	<link rel=stylesheet href="<c:url value='/css/animate.css' />" type="text/css">
 	
-	<script type="text/javascript" src="js/jquery.1.8.3.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/jquery-scrolltofixed.js"></script>
-	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="js/jquery.isotope.js"></script>
-	<script type="text/javascript" src="js/wow.js"></script>
-	<script type="text/javascript" src="js/classie.js"></script>
-	<script type="text/javascript" src="js/magnific-popup.js"></script>
-	<script src="contactform/contactform.js"></script>
+	
+	<script type="text/javascript" src="<c:url value='/js/jquery.1.8.3.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/bootstrap.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery-scrolltofixed.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.easing.1.3.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.isotope.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/wow.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
+	<!-- <script src="contactform/contactform.js"></script> -->
 
 </head>
 
@@ -44,11 +47,11 @@
 		<div class="container">
 			<figure class="logo animated fadeInDown delay-07s">
 			
-				<a href="#"><img src="<c:url value='/img/logo.png' />" alt=""></a>
+				<a href="#"><img src="<c:url value='/img/blogo.png' />" alt=""></a>
 			</figure>
-			<h1 class="animated fadeInDown delay-07s">Welcome To "¿¡¹ŞÅÛ"</h1>
+			<h1 class="animated fadeInDown delay-07s">Welcome To "ì—ë°›í…œ"</h1>
 			<ul class="we-create animated fadeInUp delay-1s">
-				<li>A+ ¹Ş´Â ÅÛÇÃ¸´</li>
+				<li>A+ ë°›ëŠ” í…œí”Œë¦¿</li>
 			</ul>
 			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
 		</div>
@@ -58,20 +61,20 @@
 	<nav class="main-nav-outer" id="test">
 		<div class="container">
 			<ul class="main-nav">
-				<li><a href="<c:url value='/' />">¿¡¹ŞÅÛ</a></li>
-				<li><a href="<c:url value='/user/list' />">»ç¿ëÀÚ¸®½ºÆ®</a></li>
-				<li><a href="<c:url value='/boot' />">ºÎÆ®½ºÆ®·¦ ¿øº»</a></li>
-				<li class="small-logo"><a href="#header"><img src="<c:url value='/img/small-logo.png' />" alt=""></a></li>
-				<li><a href="<c:url value='/post/create/form' />">±ÛÀÛ¼º</a></li>
+				<li><a href="<c:url value='/main/main' />">ì—ë°›í…œ</a></li>
+				<li><a href="<c:url value='/user/list' />">ì‚¬ìš©ìë¦¬ìŠ¤íŠ¸</a></li>
+				<li><a href="<c:url value='/boot' />">ë¶€íŠ¸ìŠ¤íŠ¸ë© ì›ë³¸</a></li>
+				<li class="blogo"><a href="#header"><img src="<c:url value='/img/small-logo.png' />" alt=""></a></li>
+				<li><a href="<c:url value='/post/create/form' />">ê¸€ì‘ì„±</a></li>
 				
-				<!-- ·Î±×ÀÎ¿©ºÎ¿¡ µû¶ó¼­ ´Ù¸§ -->
+				<!-- ë¡œê·¸ì¸ì—¬ë¶€ì— ë”°ë¼ì„œ ë‹¤ë¦„ -->
 				<c:choose>
     				<c:when test='${sessionScope.user eq null}'>
     					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
       					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
     				</c:when>
     				<c:otherwise>
-      					<li><a><%=curUserId%>&nbsp;´Ô</a></li>
+      					<li><a><%=curUserId%>&nbsp;ë‹˜</a></li>
       					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
     				</c:otherwise>
     			</c:choose>
@@ -82,30 +85,40 @@
 	</nav>
 	
 	
-	
-	
-	
-	<section class="main-section alabaster">
-		<!--main-section alabaster-start-->
+	<section class="main-section paddind" id="Portfolio">
+		<!--main-section-start-->
 		<div class="container">
-			<div class="row">
-				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-					<img src="img/iphone.png" alt="">
-				</figure>
-				<div class="col-lg-7 col-sm-8 featured-work">
-					<h2>ÀÏ´Ü ºÎÆ®½ºÆ®·¦ ÃÊ±â ÄÚµå Áö¿üÀ½</h2>
-					<P class="padding-b">Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit.</P>
-					<div class="featured-box">
-						<div class="featured-box-col1 wow fadeInRight delay-02s">
-							<i class="fa fa-magic"></i>
-						</div>
-						<div class="featured-box-col2 wow fadeInRight delay-02s">
-							<h3>magic of theme development</h3>
-							<p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. </p>
-						</div>
-					</div>
-				</div>	
+			<h2>POWERPOINT TEMPLATES</h2>
+			<h6>í…œí”Œë¦¿ ì´ìš©í•´ì„œ ë°œí‘œ ë½€ê°œë²„ë¦¬ê¸°-! ê°œê¿€ğŸ¯</h6>
+			<div class="portfolioFilter">
+				<ul class="Portfolio-nav wow fadeIn delay-02s">
+					<li><a href="#" data-filter="*" class="current">All</a></li>
+					<li><a href="#" data-filter=".u1">ìš©ë„ 1</a></li>
+					<li><a href="#" data-filter=".u2">ìš©ë„ 2</a></li>
+					<li><a href="#" data-filter=".u3">ìš©ë„ 3</a></li>
+					<li><a href="#" data-filter=".u4">ìš©ë„ 4</a></li>
+				</ul>
 			</div>
+
+		</div>
+		<div class="portfolioContainer wow fadeInUp delay-04s">
+			<%
+			if (postList != null) {	
+	  			Iterator<Post> p = postList.iterator();
+		  
+	  		while ( p.hasNext() ) {
+				Post post = (Post)p.next();
+%>		  	
+				<div class=" Portfolio-box <%=post.getUsage()%>">
+					<a href="<c:url value='/img/Portfolio-pic1.jpg' />">
+							<img src="<c:url value='/img/Portfolio-pic1.jpg' />" alt="">
+					</a>
+						<h2><%=post.getTitle()%></h2>
+				</div>
+<%
+	  }
+	}
+%>	  
 		</div>
 		
 	</section>
@@ -116,10 +129,10 @@
 	
 	<footer class="footer">
 		<div class="container">
-			<div class="footer-logo"><a href="#"><img src="<c:url value='/img/footer-logo.png' />" alt=""></a></div>
+			<div class="footer-logo"><a href="#"><img src="<c:url value='/img/blogo.png' />" alt=""></a></div>
 			<span class="copyright">&copy; TEAM ABT All Rights Reserved</span>
 			<div class="credits">	
-				µ¿´ö¿©ÀÚ´ëÇĞ±³ µ¥ÀÌÅÍº£ÀÌ½ºÇÁ·Î±×·¡¹Ö<br>¹Úº¸¶÷ ¿À¼Ò¿µ ÃÖÁö¼ö
+				ë™ë•ì—¬ìëŒ€í•™êµ ë°ì´í„°ë² ì´ìŠ¤í”„ë¡œê·¸ë˜ë°<br>ë°•ë³´ëŒ ì˜¤ì†Œì˜ ìµœì§€ìˆ˜
 			</div>
 		</div>
 	</footer>

@@ -9,11 +9,10 @@ import controller.post.*;
 public class RequestMapping {
 
     
-    // 각 요청 uri에 대한 controller 객체를 저장할 HashMap 생성
-    private Map<String, Controller> mappings = new HashMap<String, Controller>();
+     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// 각 uri에 대응되는 controller 객체를 생성 및 저장
+    	
         mappings.put("/", new ForwardController("index.jsp"));
         
         //main page
@@ -21,7 +20,7 @@ public class RequestMapping {
         
         //user 관련
         mappings.put("/user/list", new ListUserController());
-        mappings.put("/user/login", new MainController());
+        mappings.put("/user/login", new LoginController());
         mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
         mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/register", new RegisterController());
@@ -29,15 +28,14 @@ public class RequestMapping {
         mappings.put("/user/register_ok", new ForwardController("/user/register_ok.jsp"));
         
         //post 관련 
-        mappings.put("/post/create/form", new PostCreateController());
+        mappings.put("/post/create/form", new PostFormController());
         mappings.put("/post/create", new PostCreateController());
         
-        //임시 부트트스트랩 index 원본 
+        //초기 부트스트랩
         mappings.put("/boot", new ForwardController("bootstrap.jsp"));
     }
 
     public Controller findController(String uri) {	
-    	// 주어진 uri에 대응되는 controller 객체를 찾아 반환
         return mappings.get(uri);
     }
 }

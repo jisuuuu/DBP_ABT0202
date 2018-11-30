@@ -494,6 +494,121 @@ border: 2px solid #fff;
 }
 
 
+
+/* Boram custom
+---------------------------------*/
+.boram-block{
+	max-width:993px;
+	margin:0 auto;
+}
+.boram-box{
+	width:30.66%;
+	margin-right: 3.82979%;
+	height: 490px;
+	overflow: hidden;
+	text-align: center;
+	float: left;
+}
+.boram-box span{
+	margin-bottom:24px;
+	display:block;
+}
+.boram-box:nth-of-type(3n+0){ margin:0;}
+.boram{
+	width:auto;
+	height:auto;
+	position:relative;
+	border-radius:50%;
+	box-shadow:0px 0px 0px 7px rgba(241,241,241,0.80);
+	margin:7px 7px 25px 7px;
+	
+}
+.boram-shadow{
+	transition:all 0.3s ease-in-out;
+	-moz-transition:all 0.3s ease-in-out;
+	-webkit-transition:all 0.3s ease-in-out;
+	border-radius:50%;
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:10;
+	border-radius:50%;
+}
+.boram-shadow a{
+	display:block;
+	width:100%;
+	height:100%;
+}
+.boram:hover .boram-shadow{
+	box-shadow:inset  0px 0px 0px 148px rgba(17,17,17,0.80);
+}
+.boram:hover ul{ display:block; opacity:1}
+.boram img{
+	display:block;
+	border-radius:50%;
+}
+.boram ul{
+	display:block;
+	opacity:0;
+	padding:0;
+	margin:0;
+	list-style:none;
+	position:absolute;
+	left:0;
+	top:50%;
+	width:100%;
+	text-align:center;
+	margin-top:-14px;
+	z-index:15;
+	transition:all 0.6s ease-in-out;
+	-moz-transition:all 0.6s ease-in-out;
+	-webkit-transition:all 0.6s ease-in-out;
+}
+.boram ul li{
+	display:inline;
+	margin:0 11px;
+}
+.boram ul li a{
+	font-family: 'FontAwesome';
+	display:inline-block;
+	font-size:28px;
+	color:#fff;	
+	transition:all 0.3s ease-in-out;
+	-moz-transition:all 0.3s ease-in-out;
+	-webkit-transition:all 0.3s ease-in-out;
+}
+.boram ul li a:hover, .boram ul li a:focus{
+	text-decoration:none;
+}
+.boram ul li a.fa-twitter:hover{
+	color:#55acee;
+}
+.boram ul li a.fa-facebook:hover{
+	color:#3b5998;
+}
+.boram ul li a.fa-pinterest:hover{
+	color:#cb2026;
+}
+.boram ul li a.fa-google-plus:hover{
+	color:#dd4b39;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Team
 ---------------------------------*/
 .team-leader-block{
@@ -526,12 +641,12 @@ border: 2px solid #fff;
 	transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
 	-webkit-transition:all 0.3s ease-in-out;
-	border-radius:50%;
+	
 	position:absolute;
 	width:100%;
 	height:100%;
 	z-index:10;
-	border-radius:50%;
+	
 }
 .team-leader-shadow a{
 	display:block;
@@ -544,7 +659,7 @@ border: 2px solid #fff;
 .team-leader:hover ul{ display:block; opacity:1}
 .team-leader img{
 	display:block;
-	border-radius:50%;
+	
 }
 .team-leader ul{
 	display:block;
@@ -690,6 +805,10 @@ border: 2px solid #fff;
 
 .form{
 	margin:0 66px 0 30px;
+}
+
+.centerform{
+	margin:0 auto;
 }
 .input-text{
 	padding:15px 16px;

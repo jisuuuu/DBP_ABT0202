@@ -31,5 +31,7 @@ public class RegisterController implements Controller{
 			request.setAttribute("user", user);
 			return "/user/register.jsp";
 		}
+		
+		
     }
 }
