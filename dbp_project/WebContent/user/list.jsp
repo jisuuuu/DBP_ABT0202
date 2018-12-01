@@ -1,6 +1,8 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@page import="java.util.*" %>
 <%@page import="model.User" %>
+<%@page import="model.service.UserManager" %>
+<%@page import="model.service.UserNotFoundException" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	@SuppressWarnings("unchecked") 
@@ -36,6 +38,10 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
     
+    <%
+    	UserManager manager = UserManager.getInstance();
+    	User us = manager.findUser(curUserId);
+    %>
    
    <c:choose>
     	<c:when test='${sessionScope.user eq null}'>
@@ -43,7 +49,7 @@
       		<li><a href="<c:url value='/user/login/form' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     	</c:when>
     	<c:otherwise>
-      		<li><a><span class="glyphicon glyphicon-user"></span> <%=curUserId%>&nbsp;님</a></li>
+      		<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><span class="glyphicon glyphicon-user"></span><%=curUserId%>&nbsp;님</a></li>
       		<li><a href="<c:url value='/user/logout' />"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
     	</c:otherwise>
     </c:choose>

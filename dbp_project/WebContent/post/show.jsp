@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="model.Post" %>
 <%@page import="java.util.*" %>
+<%@page import="model.User" %>
+<%@page import="model.service.UserManager" %>
+<%@page import="model.service.UserNotFoundException" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%
 	String curUserId = (String)session.getAttribute("user");
@@ -47,13 +50,17 @@
 				<li><a href="<c:url value='/post/create/form' />">글작성</a></li>
 				
 				<!-- 로그인여부에 따라서 다름 -->
+				<%
+    				UserManager manager = UserManager.getInstance();
+    				User us = manager.findUser(curUserId);
+    			%>
 				<c:choose>
     				<c:when test='${sessionScope.user eq null}'>
     					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
       					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
     				</c:when>
     				<c:otherwise>
-      					<li><a><%=curUserId%>&nbsp;님</a></li>
+      					<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><%=curUserId%>&nbsp;님</a></li>
       					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
     				</c:otherwise>
     			</c:choose>

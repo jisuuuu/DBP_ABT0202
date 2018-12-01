@@ -1,15 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.*" %>
 <%@page import="model.User" %>
 <%@page import="model.service.UserManager" %>
 <%@page import="model.service.UserNotFoundException" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%
+<%
 	String curUserId = (String)session.getAttribute("user");
+	User user = (User)request.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
@@ -30,23 +33,21 @@
 	<script type="text/javascript" src="<c:url value='/js/wow.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
-
-<title>ì—ë°›í…œ ê¸€ìž‘ì„±</title>
+<title><%= user.getUser_id() %>&nbsp;´ÔÀÇ MY PAGE</title>
 </head>
 <body>
-
-	<nav class="main-nav-outer" id="test">
+<nav class="main-nav-outer" id="test">
 		<div class="container">
 			<ul class="main-nav">
-				<li><a href="<c:url value='/main/main' />">ì—ë°›í…œ</a></li>
-				<li><a href="<c:url value='/user/list' />">ì‚¬ìš©ìžë¦¬ìŠ¤íŠ¸</a></li>
-				<li><a href="<c:url value='/boot' />">ë¶€íŠ¸ìŠ¤íŠ¸ëž© ì›ë³¸</a></li>
+				<li><a href="<c:url value='/main/main' />">¿¡¹ÞÅÛ</a></li>
+				<li><a href="<c:url value='/user/list' />">»ç¿ëÀÚ¸®½ºÆ®</a></li>
+				<li><a href="<c:url value='/boot' />">ºÎÆ®½ºÆ®·¦ ¿øº»</a></li>
 				<li class="small-logo">
 					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				</li>
-				<li><a href="<c:url value='/post/create/form' />">ê¸€ìž‘ì„±</a></li>
+				<li><a href="<c:url value='/post/create/form' />">±ÛÀÛ¼º</a></li>
 				
-				<!-- ë¡œê·¸ì¸ì—¬ë¶€ì— ë”°ë¼ì„œ ë‹¤ë¦„ -->
+				<!-- ·Î±×ÀÎ¿©ºÎ¿¡ µû¶ó¼­ ´Ù¸§ -->
 				<%
     				UserManager manager = UserManager.getInstance();
     				User us = manager.findUser(curUserId);
@@ -58,7 +59,7 @@
       					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
     				</c:when>
     				<c:otherwise>
-      					<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><%=curUserId%>&nbsp;ë‹˜</a></li>
+      					<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><%=curUserId%>&nbsp;´Ô</a></li>
       					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
     				</c:otherwise>
     			</c:choose>
@@ -67,89 +68,39 @@
 			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
 		</div>
 	</nav>
-
+	
 
 	<section class="business-talking">
 		<div class="container">
-			<h2>"A+" ë°›ëŠ” í…œí”Œë¦¿</h2>
+			<h2>"A+" ¹Þ´Â ÅÛÇÃ¸´</h2>
 		</div>
 	</section>
 	
-	
-	
-	<div class="container">
-
-		<section class="main-section team" id="team">
-			
-			<div class="container">
-				<div class="row">
-					<form action="<c:url value='/post/create' />" method="post" role="form" class="contactForm" enctype="multipart/form-data">
-					
-						<div class="form-group">
-  							<label for="useage"> Usage list:</label>
-  							<select class="form-control" name="usage" id="usage">
-    							<option>u1</option>
-    							<option>u2</option>
-   								<option>u3</option>
-    							<option>u4</option>
-  							</select>
-						</div>
-					
-						<div class="form-group">
-							<input type="text" name="post_title" class="form-control input-text" id="post_title"
-								placeholder="ì œëª©ìž…ë ¥" data-rule="maxlen:15"
-								data-msg="Please enter Post Title" />
-							<div class="validation"></div>
-						</div>
-			
-						<div class="form-group">
-  							<textarea class="form-control" rows="10" id="post_content" name="post_content"></textarea>
-						</div>
-						
-						<div class="form-group">
-							<input type="text" name="file_link" class="form-control input-text" id="file_link"
-								placeholder="file link"
-								data-msg="Please enter File Link" />
-							<div class="validation"></div>
-						</div>
-						
-						<div class="form-group">
-							<input type="file" name="file" class="form-control input-text" id="file" />
-							<div class="validation"></div>
-						</div>
-						
-						<div class="form-group">
-						<label for="thumnail"> thumnail</label>
-							<input type="file" name="thumnail" class="form-control input-text" id="thumnail" 
-							placeholder="thumnail"/>
-							<div class="validation"></div>
-						</div>
-				
-			
-						<div class="text-center">
-							<button type="submit" class="input-btn">ìž‘ì„±ì™„ë£Œ</button>
-						</div>
-					</form>
-				</div>
-			</div>
-
-		</section>
+	<table>
+		<tr>
+			<td>¾ÆÀÌµð</td>
+			<td><%= user.getUser_id() %></td>
+		</tr>
+		<tr>
+			<td>´Ð³×ÀÓ ¾ÆÀÌµð</td>
+			<td><%= user.getNickname() %></td>
+		</tr>
+		<tr>
+			<td>°ü½É»ç</td>
+			<td></td>
+		</tr>
 		
-	</div>
-	
-	
-	
+	</table>
 	
 	<footer class="footer">
 		<div class="container">
 			<div class="footer-logo"><a href="#"><img src="<c:url value='/img/blogo.png' />" alt=""></a></div>
 			<span class="copyright">&copy; TEAM ABT All Rights Reserved</span>
 			<div class="credits">	
-				ë™ë•ì—¬ìžëŒ€í•™êµ ë°ì´í„°ë² ì´ìŠ¤í”„ë¡œê·¸ëž˜ë°<br>ë°•ë³´ëžŒ ì˜¤ì†Œì˜ ìµœì§€ìˆ˜
+				µ¿´ö¿©ÀÚ´ëÇÐ±³ µ¥ÀÌÅÍº£ÀÌ½ºÇÁ·Î±×·¡¹Ö<br>¹Úº¸¶÷ ¿À¼Ò¿µ ÃÖÁö¼ö
 			</div>
 		</div>
 	</footer>
-	
 	
 </body>
 </html>

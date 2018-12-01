@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.Post" %>
+<%@page import="model.User" %>
+<%@page import="model.service.UserManager" %>
+<%@page import="model.service.UserNotFoundException" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%
  	@SuppressWarnings("unchecked") 
@@ -56,6 +59,10 @@
 		</div>
 	</header>
 	
+	<%
+    	UserManager manager = UserManager.getInstance();
+    	User us = manager.findUser(curUserId);
+    %>
 
 	<nav class="main-nav-outer" id="test">
 		<div class="container">
@@ -73,7 +80,7 @@
       					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
     				</c:when>
     				<c:otherwise>
-      					<li><a><%=curUserId%>&nbsp;님</a></li>
+      					<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><%=curUserId%>&nbsp;님</a></li>
       					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
     				</c:otherwise>
     			</c:choose>
