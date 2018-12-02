@@ -82,6 +82,7 @@
 		  <td width="190" align="center" bgcolor="E6ECDE" height="22">사용자 ID</td>
 		  <td width="200" align="center" bgcolor="E6ECDE">이름</td>
 		  <td width="200" align="center" bgcolor="E6ECDE">이메일</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">관심사</td>
 		</tr>
 <%
 	if (userList != null) {	
@@ -103,6 +104,9 @@
 		  </td>
 		  <td width="200" align="center" bgcolor="ffffff" height="20">
 			  <%=user.getTotal_point()%>
+		  </td>
+		  <td width="200" align="center" bgcolor="ffffff" height="20">
+			  <%=user.getInterest1()%>
 		  </td>
 		</tr>
 <%

@@ -16,7 +16,9 @@ public class RegisterController implements Controller{
 		User user = new User(
 			request.getParameter("user_id"),
 			request.getParameter("nickname"),
-			request.getParameter("password")
+			request.getParameter("password"),
+			request.getParameter("total_point"),
+			request.getParameter("interest1")
 		);
         
 

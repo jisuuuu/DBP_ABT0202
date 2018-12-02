@@ -75,8 +75,45 @@
 			<h2>"A+" 받는 템플릿</h2>
 		</div>
 	</section>
-	
-	<table>
+	<section class="main-section" id="service">
+		<!--main-section-start-->
+		<div class="container">
+			<h2>My Page</h2>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
+					<div class="service-list">
+						<div class="service-list-col1">
+							<i class="fa fa-gear"></i>
+						</div>
+						<div class="service-list-col2">
+							<h3><%= user.getUser_id() %>님의 닉네임</h3>
+							<p><%= user.getNickname() %></p>
+						</div>
+					</div>
+					<div class="service-list">
+						<div class="service-list-col1">
+							<i class="fa fa-paw"></i>
+						</div>
+						<div class="service-list-col2">
+							<h3><%= user.getUser_id() %>님의 관심사</h3>
+							<p><%= user.getInterest1() %></p>
+						</div>
+					</div>
+					<div class="service-list">
+						<div class="service-list-col1">
+							<i class="fa fa-medkit"></i>
+						</div>
+						<div class="service-list-col2">
+							<h3><%= user.getUser_id() %>님의 포인트</h3>
+							<p><%= user.getTotal_point() %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--main-section-end-->
+<!-- 	<table>
 		<tr>
 			<td>아이디</td>
 			<td><%= user.getUser_id() %></td>
@@ -87,10 +124,11 @@
 		</tr>
 		<tr>
 			<td>관심사</td>
-			<td></td>
+			<td><%= user.getInterest1() %></td>
 		</tr>
 		
-	</table>
+	</table> 
+-->
 	
 	<footer class="footer">
 		<div class="container">
