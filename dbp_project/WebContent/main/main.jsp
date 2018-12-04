@@ -55,7 +55,7 @@
 			<ul class="we-create animated fadeInUp delay-1s">
 				<li>A+ 받는 템플릿</li>
 			</ul>
-			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
+			<a class="link animated fadeInUp delay-1s servicelink" href="#test">Get Started</a>
 		</div>
 	</header>
 	

@@ -85,26 +85,19 @@
 				
 				</figure>
 				<div class="col-lg-7 col-sm-8 featured-work">
-					<h2><%=post.getTitle()%></h2>
-					<P class="padding-b"><%=post.getContent() %> <br>Writer :: <%=post.getConsumer_id() %></P>
+					<h1>[<%=post.getUsage() %>] <%=post.getTitle()%></h1>
+					<p style="float:right"> 작성자 :: <b><%=post.getConsumer_id() %></b><br>
+					 <%=post.getUpload_date() %> </p>
+					<br><br>
+					<hr>
+					
 					<div class="featured-box">
-						<div class="featured-box-col1 wow fadeInRight delay-02s">
-							<i class="fa fa-magic"></i>
-						</div>
-						<div class="featured-box-col2 wow fadeInRight delay-02s">
-							<h3>UPLOAD DATE</h3>
-							<p><%=post.getUpload_date() %> </p>
-						</div>
+						<P class="padding-b">
+						<h4><%=post.getContent() %> </h4>
+						<br>
+					</P>
 					</div>
-					<div class="featured-box">
-						<div class="featured-box-col1 wow fadeInRight delay-04s">
-							<i class="fa fa-gift"></i>
-						</div>
-						<div class="featured-box-col2 wow fadeInRight delay-04s">
-							<h3>USAGE</h3>
-							<p><%=post.getUsage() %> </p>
-						</div>
-					</div>
+					
 					<div class="featured-box">
 						<div class="featured-box-col1 wow fadeInRight delay-06s">
 							<i class="fa fa-dashboard"></i>
@@ -112,9 +105,31 @@
 						<div class="featured-box-col2 wow fadeInRight delay-06s">
 							<h3>DOWN COUNT</h3>
 							<p><%=post.getDown_count() %></p>
+								<c:choose>
+    					<c:when test="${post.file_link eq null}">
+        
+        					<a class="link2 delay-1s servicelink" href="<c:url value='/templet/${post.post_file}' />">다운로드</a>
+    					</c:when>
+ 
+    					<c:otherwise>
+    						<a class="link2 delay-1s servicelink" href="${post.file_link}" target="_blank">다운로드</a>
+        					
+    					</c:otherwise>
+ 
+					</c:choose>
 						</div>
+					
 					</div>
-					<a class="Learn-More" href="#">Learn More</a>
+					
+					<br>
+					
+					
+
+
+
+
+					
+					
 				</div>
 			</div>
 		</div>
