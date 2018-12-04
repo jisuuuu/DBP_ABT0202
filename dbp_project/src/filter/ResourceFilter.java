@@ -23,7 +23,6 @@ public class ResourceFilter implements Filter {
         resourcePrefixs.add("/js");
         resourcePrefixs.add("/fonts");
         resourcePrefixs.add("/img");
-        resourcePrefixs.add("/templet");
     }
 
     private RequestDispatcher defaultRequestDispatcher;

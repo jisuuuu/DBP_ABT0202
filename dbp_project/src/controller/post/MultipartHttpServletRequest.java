@@ -47,10 +47,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
 			String path = context.getRealPath("/img");
 			File dir = new File(path);
 			if(!dir.exists()) dir.mkdir();
-			
-			String path2 = context.getRealPath("/templet");
-			File dir2 = new File(path2);
-			if(!dir2.exists()) dir2.mkdir();
+			//전송된 파일을 저장할 실제 경로를 만든다.
 			
 			try {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -93,7 +90,7 @@ public class MultipartHttpServletRequest extends HttpServlet {
                 			//파일이 전송되어 오지 않았다면 건너 뛴다.
                 			filename = filename.substring(filename.lastIndexOf("\\") + 1);
                 			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
-                			File file = new File(dir2, filename);
+                			File file = new File(dir, filename);
                 			item.write(file);
                 			
                 		}

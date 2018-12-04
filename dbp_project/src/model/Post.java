@@ -8,8 +8,8 @@ public class Post {
 	private String consumer_id;
 	private String title;
 	private String content;
-	private String post_file = null;
-	private String file_link = null;
+	private String post_file;
+	private String file_link;
 	private int down_count;
 	private String upload_date;
 	private String usage;
