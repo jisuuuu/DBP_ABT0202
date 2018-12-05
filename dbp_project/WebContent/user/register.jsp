@@ -78,25 +78,52 @@
 					data-msg="Please enter Your nickname" />
 				<div class="validation"></div>
 			</div>
+			
+			<script language=Javascript>
+
+				var maxChecked = 3;   //선택가능 갯수
+				var totalChecked = 0; // 설정 끝
+
+				function CountChecked(field) {
+    				if (field.checked)
+        				totalChecked += 1;
+    				else
+       					totalChecked -= 1;
+
+    				if (totalChecked > maxChecked) {
+        				alert ("최대 3개 까지만 가능합니다.");
+    					field.checked = false;
+    					totalChecked -= 1;
+    				}
+    
+				}
+
+				function ResetCount(){
+    				totalChecked = 0;
+				}
+
+			</script>
+			
+			최대 <script>document.write(maxChecked);</script>까지만 선택할 수 있습니다.
 			<div class="form-group">
-				<input type="checkbox" name="interest" value="red" checked> 빨강
-				<input type="checkbox" name="interest" value="orange"> 주황
-				<input type="checkbox" name="interest" value="yellow"> 노랑<br>
-				<input type="checkbox" name="interest" value="green"> 초록
-				<input type="checkbox" name="interest" value="blue"> 파랑
-				<input type="checkbox" name="interest" value="purple"> 보라<br>
-				<input type="checkbox" name="interest" value="gray"> 회색
-				<input type="checkbox" name="interest" value="pink"> 핑크
-				<input type="checkbox" name="interest" value="black"> 검정<br>
-				<input type="checkbox" name="interest" value="white"> 흰색
-				<input type="checkbox" name="interest" value="navy"> 네이비
-				<input type="checkbox" name="interest" value="lime"> 라임<br>
+				<input type="checkbox" name="interest" value="red" onclick=CountChecked(this)> 빨강
+				<input type="checkbox" name="interest" value="orange" onclick=CountChecked(this)> 주황
+				<input type="checkbox" name="interest" value="yellow" onclick=CountChecked(this)> 노랑<br>
+				<input type="checkbox" name="interest" value="green" onclick=CountChecked(this)> 초록
+				<input type="checkbox" name="interest" value="blue" onclick=CountChecked(this)> 파랑
+				<input type="checkbox" name="interest" value="purple" onclick=CountChecked(this)> 보라<br>
+				<input type="checkbox" name="interest" value="gray" onclick=CountChecked(this)> 회색
+				<input type="checkbox" name="interest" value="pink" onclick=CountChecked(this)> 핑크
+				<input type="checkbox" name="interest" value="black" onclick=CountChecked(this)> 검정<br>
+				<input type="checkbox" name="interest" value="white" onclick=CountChecked(this)> 흰색
+				<input type="checkbox" name="interest" value="navy" onclick=CountChecked(this)> 네이비
+				<input type="checkbox" name="interest" value="lime" onclick=CountChecked(this)> 라임<br>
 				<div class="validation"></div>
 			</div>
 
 
 			<div class="text-center">
-				<button type="submit" class="input-btn">Sign</button>
+				<button type="submit" class="btn btn-success">Sign</button>
 			</div>
 		</form>
 	</div>

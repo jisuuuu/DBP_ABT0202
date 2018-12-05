@@ -99,9 +99,9 @@
 							<p><%= user.getInterest1() %></p>
 							<%
 			  					if (user.getInterest2() != null)
-			  						out.println(user.getInterest2());
+			  						out.println("<p>" + user.getInterest2() + "</p>");
 			  					if (user.getInterest3() != null)
-			  						out.println(user.getInterest3());
+			  						out.println("<p>" + user.getInterest3() + "</p>");
 			  				%>
 						</div>
 					</div>

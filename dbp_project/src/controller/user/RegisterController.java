@@ -13,14 +13,17 @@ public class RegisterController implements Controller{
 
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//회원가입시 interest 체크박스 값 가져오기
+		String[] interest = request.getParameterValues("interest");
+		
 		User user = new User(
 			request.getParameter("user_id"),
 			request.getParameter("nickname"),
 			request.getParameter("password"),
-			Integer.parseInt(request.getParameter("total_point")),
-			request.getParameter("interest1"),
-			request.getParameter("interest2"),
-			request.getParameter("interest3")
+			10,
+			interest[0],
+			interest[1],
+			interest[2]
 		);
         
 

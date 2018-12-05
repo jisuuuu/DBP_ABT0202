@@ -43,7 +43,7 @@ public class DispatcherServlet extends HttpServlet {
             String uri = controller.execute(request, response);
             
  			// 반환된 uri에 따라 forwarding 또는 redirection 여부를 결정하고 이동 
-            if (uri.startsWith("redirect:")) {	
+            if (uri.startsWith("redirect:")) {
             	// redirection 지시
             	String targetUri = contextPath + uri.substring("redirect:".length());
             	response.sendRedirect(targetUri);	// redirect to url            

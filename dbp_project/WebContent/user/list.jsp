@@ -106,10 +106,10 @@
 			  <%=user.getTotal_point()%>
 		  </td>
 		  <td width="200" align="center" bgcolor="ffffff" height="20">
-			  <%=user.getInterest1()%>
+			  <%=user.getInterest1() %>
 			  <%
 			  	if (user.getInterest2() != null)
-			  		out.print(user.getInterest2());
+			  		out.print(user.getInterest2() + " ");
 			  	if (user.getInterest3() != null)
 			  		out.print(user.getInterest3());
 			  %>

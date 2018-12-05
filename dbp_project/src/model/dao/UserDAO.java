@@ -9,6 +9,13 @@ import model.User;
 public class UserDAO {
 	private JDBCUtil jdbcUtil = null;
 	
+	private static UserDAO instance = new UserDAO();
+
+	// 자신의 객체를 리턴하는 메소드 만듬
+	public static UserDAO getInstance() {
+		return instance;
+	}
+	
 	public UserDAO() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
