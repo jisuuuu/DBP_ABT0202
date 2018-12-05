@@ -37,6 +37,7 @@ import org.slf4j.LoggerFactory;
 
 		postDAO = new PostDAO();
 		postDAO.create(post);
+		postDAO.GivePoint((String)session.getAttribute("user"));
 		
 		Post p2 = postDAO.findPost2((String)session.getAttribute("user"), post.getTitle(), post.getContent());
 	

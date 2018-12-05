@@ -81,11 +81,9 @@ public class MultipartHttpServletRequest extends HttpServlet {
                 	}
                 	else {
                 		if(item.getFieldName().equals("file")) {
-                			filename = item.getName();//파일 이름 획득 (자동 한글 처리 됨)
+                			filename = item.getName();
                 			if(filename == null || filename.trim().length() == 0) continue;
-                			//파일이 전송되어 오지 않았다면 건너 뛴다.
                 			filename = filename.substring(filename.lastIndexOf("\\") + 1);
-                			//파일 이름이 파일의 전체 경로까지 포함하기 때문에 이름 부분만 추출해야 한다.
                 			File file = new File(dir2, filename);
                 			item.write(file);
                 			

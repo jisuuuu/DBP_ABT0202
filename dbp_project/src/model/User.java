@@ -32,7 +32,7 @@ public class User {
 		this.user_id = user_id;
 		this.nickname = nickname;
 		this.password = password;
-		this.total_point = 10;
+		this.total_point = total_point;
 		this.interest1 = interest1;
 		this.interest2 = interest2;
 		this.interest3 = interest3;

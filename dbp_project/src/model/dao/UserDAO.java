@@ -26,17 +26,17 @@ public class UserDAO {
 				+ "VALUES (?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {user.getUser_id(), user.getPassword(), user.getNickname(), 
 				user.getInterest1(), user.getInterest2(), user.getInterest3()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, param);	
 						
 		try {				
-			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			int result = jdbcUtil.executeUpdate();	
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();	// resource 반환
+			jdbcUtil.close();	
 		}		
 		return 0;			
 	}

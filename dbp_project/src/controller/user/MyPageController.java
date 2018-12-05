@@ -1,5 +1,7 @@
 package controller.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,9 +9,13 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.service.UserManager;
 import model.service.UserNotFoundException;
+import model.Post;
 import model.User;
+import model.dao.PostDAO;
 
 public class MyPageController implements Controller {
+	
+	PostDAO postDAO = new PostDAO();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
@@ -26,6 +32,9 @@ public class MyPageController implements Controller {
     	}catch(UserNotFoundException e) {
     		return "redirect:/user/list";
     	}
+    	
+    	List<Post> postList = postDAO.findPostListByUser(userId);
+    	request.setAttribute("postList", postList);	
     	
     	request.setAttribute("user", user);
     	return "/user/mypage.jsp";

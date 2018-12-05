@@ -108,24 +108,15 @@
 
 		</div>
 		<div class="portfolioContainer wow fadeInUp delay-04s">
-			<%
-			if (postList != null) {	
-	  			Iterator<Post> p = postList.iterator();
-		  
-	  		while ( p.hasNext() ) {
-				Post post = (Post)p.next();
-%>		  	
-				<div class="Portfolio-box <%=post.getUsage()%>">	
-					 <a href="<c:url value='/post/detail' />?postId=<%=post.getPost_id()%>">			           
-  						<img src="<c:url value='/img/Portfolio-pic1.jpg' />" alt="">
+			<c:forEach items="${postList}" var="post" varStatus="status">
+				<div class="Portfolio-box ${post.usage}">	
+					 <a href="<c:url value='/post/detail' />?postId=${post.post_id}">			           
+  						<img src="<c:url value='/img/${post.thumnail}' />" alt="" width="350px" height="263px">
   					</a>         
-  						<h2><%=post.getTitle()%></h2>
- 		
+  						<h2>${post.title}</h2>
+
 				</div>
-<%
-	  }
-	}
-%>	  
+  			</c:forEach>
 		</div>
 		
 	</section>

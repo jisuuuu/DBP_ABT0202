@@ -3,11 +3,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.*" %>
 <%@page import="model.User" %>
+<%@page import="model.Post" %>
 <%@page import="model.service.UserManager" %>
 <%@page import="model.service.UserNotFoundException" %>
 <%
 	String curUserId = (String)session.getAttribute("user");
 	User user = (User)request.getAttribute("user");
+	List<Post> postList = (List<Post>)request.getAttribute("postList");
 %>
 <!DOCTYPE html>
 <html>
@@ -72,13 +74,13 @@
 
 	<section class="business-talking">
 		<div class="container">
-			<h2>"A+" 받는 템플릿</h2>
+			<h2>MY PAGE</h2>
 		</div>
 	</section>
 	<section class="main-section" id="service">
 		<!--main-section-start-->
 		<div class="container">
-			<h2>My Page</h2>
+			
 			<div class="row">
 				<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
 					<div class="service-list">
@@ -92,22 +94,22 @@
 					</div>
 					<div class="service-list">
 						<div class="service-list-col1">
-							<i class="fa fa-paw"></i>
+							<i class="fa fa-paint-brush" aria-hidden="true"></i>
 						</div>
 						<div class="service-list-col2">
-							<h3><%= user.getUser_id() %>님의 관심사</h3>
-							<p><%= user.getInterest1() %></p>
+							<h3><%= user.getUser_id() %>님의 관심 색</h3>
+							<p style="color:<%= user.getInterest1() %>"><b><%= user.getInterest1() %></b></p>
 							<%
 			  					if (user.getInterest2() != null)
-			  						out.println("<p>" + user.getInterest2() + "</p>");
+			  						out.println("<p style=color:" + user.getInterest2() +"><b>" + user.getInterest2() + "</b></p>");
 			  					if (user.getInterest3() != null)
-			  						out.println("<p>" + user.getInterest3() + "</p>");
+			  						out.println("<p style=color:" + user.getInterest3() +"><b>" + user.getInterest3() + "</b></p>");
 			  				%>
 						</div>
 					</div>
 					<div class="service-list">
 						<div class="service-list-col1">
-							<i class="fa fa-medkit"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
 						</div>
 						<div class="service-list-col2">
 							<h3><%= user.getUser_id() %>님의 포인트</h3>
@@ -115,6 +117,17 @@
 						</div>
 					</div>
 				</div>
+			
+				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+					<h2><%= user.getUser_id() %>의 작성글</h2><br>
+					<c:forEach items="${postList}" var="post" varStatus="status">
+						<a href="<c:url value='/post/detail' />?postId=${post.post_id}">
+							<h4>#${status.count} &nbsp; [${post.usage}] &nbsp; ${post.title}</h4>
+						</a>
+						<hr>
+  					</c:forEach>
+				</div>
+				
 			</div>
 		</div>
 	</section>
