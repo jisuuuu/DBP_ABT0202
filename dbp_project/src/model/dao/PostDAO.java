@@ -22,17 +22,17 @@ public class PostDAO {
 		Object[] param = null;
 		if (post.getPost_file() == "") {
 			
-			 sql = "INSERT INTO POST (post_id, title, content, consumer_id, file_link, usage, THUMNAIL) "
-					+ "VALUES (POST_ID_SEQUENCE.nextval, ?, ?, ?, ?, ?, ?)";
+			 sql = "INSERT INTO POST (post_id, title, content, consumer_id, file_link, usage, THUMNAIL, COLOR1, COLOR2) "
+					+ "VALUES (POST_ID_SEQUENCE.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 			 param = new Object[] { post.getTitle(), post.getContent(), 
-						post.getConsumer_id(), post.getFile_link(), post.getUsage() ,post.getThumnail()};
+						post.getConsumer_id(), post.getFile_link(), post.getUsage() ,post.getThumnail(), post.getColor1(), post.getColor2()};
 		}
 		else {
 			
-			sql = "INSERT INTO POST (post_id, title, content, consumer_id, post_file, usage, THUMNAIL) "
-					+ "VALUES (POST_ID_SEQUENCE.nextval, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO POST (post_id, title, content, consumer_id, post_file, usage, THUMNAIL, COLOR1, COLOR2) "
+					+ "VALUES (POST_ID_SEQUENCE.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 			 param = new Object[] { post.getTitle(), post.getContent(), 
-						post.getConsumer_id(), post.getPost_file(), post.getUsage(), post.getThumnail()};
+						post.getConsumer_id(), post.getPost_file(), post.getUsage(), post.getThumnail(), post.getColor1(), post.getColor2()};
 		}
 			
 	
@@ -73,7 +73,8 @@ public class PostDAO {
 					rs.getString("title"), rs.getString("content"),
 					rs.getString("post_file"), rs.getString("file_link"),
 					rs.getInt("down_count"), dateString, 
-					rs.getString("usage"), rs.getString("thumnail"));	
+					rs.getString("usage"), rs.getString("thumnail"),
+					rs.getString("color1"), rs.getString("color2"));	
 				postList.add(post);				
 			}		
 			return postList;					
@@ -107,7 +108,8 @@ public class PostDAO {
 						rs.getString("title"), rs.getString("content"),
 						rs.getString("post_file"), rs.getString("file_link"),
 						rs.getInt("down_count"), dateString, 
-						rs.getString("usage"), rs.getString("thumnail"));	
+						rs.getString("usage"), rs.getString("thumnail"),
+						rs.getString("color1"), rs.getString("color2"));	
 									
 				}		
 				return post;					
@@ -123,7 +125,7 @@ public class PostDAO {
 		
 		//글  불러오기2
 		public Post findPost2(String user_id, String Title, String Content) throws SQLException {
-			        String sql = "SELECT * " + "FROM POST " + "WHERE post_id = ? and title = ? and content = ?";
+			        String sql = "SELECT * " + "FROM POST " + "WHERE consumer_id = ? and title = ? and content = ?";
 			        Object[] param = new Object[] { user_id, Title, Content};
 					jdbcUtil.setSqlAndParameters(sql, param);	
 					
@@ -142,7 +144,8 @@ public class PostDAO {
 								rs.getString("title"), rs.getString("content"),
 								rs.getString("post_file"), rs.getString("file_link"),
 								rs.getInt("down_count"), dateString, 
-								rs.getString("usage"), rs.getString("thumnail"));	
+								rs.getString("usage"), rs.getString("thumnail"),
+								rs.getString("color1"), rs.getString("color2"));	
 											
 						}		
 						return post;					
@@ -155,3 +158,4 @@ public class PostDAO {
 					return null;
 				}
 }
+

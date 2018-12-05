@@ -44,7 +44,7 @@
 				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
 				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
 				<li class="small-logo">
-					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-logo.png' />" alt=""></a>
+					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				</li>
 				<li><a href="<c:url value='/post/create/form' />">글작성</a></li>
 

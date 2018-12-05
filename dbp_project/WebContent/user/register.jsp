@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
+<%@page import="model.service.UserManager" %>
+<%@page import="model.service.UserNotFoundException" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
+ <%
 	String curUserId = (String)session.getAttribute("user");
 %>
 <!DOCTYPE html>
@@ -10,56 +12,84 @@
 <meta charset="EUC-KR">
 
 
-<!-- гуцдаЖ╟М цж╪рх╜╣х цж╫е CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- ╨н╟║юШюн ев╦╤ -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- гуцдаЖ╟М цж╪рх╜╣х цж╫е юз╧ы╫╨е╘╦Ёф╝ -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<title>х╦©Ь╟║ют From</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
+	<link rel=stylesheet href="<c:url value='/css/style.css' />" type="text/css">
+	<link href="<c:url value='/css/bootstrap.css' />" rel="stylesheet" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/font-awesome.css' />" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/responsive.css' />" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/magnific-popup.css' />" type="text/css">
+	<link rel=stylesheet href="<c:url value='/css/animate.css' />" type="text/css">
+	
+	
+	<script type="text/javascript" src="<c:url value='/js/jquery.1.8.3.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/bootstrap.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery-scrolltofixed.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.easing.1.3.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.isotope.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/wow.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
+<title>М ▄Л⌡░Й╟─Л·┘ From</title>
 
 
 </head>
 <body>
 
 
-<h1>A+ ╧ч╢б ешгц╦╢</h1>
+<nav class="main-nav-outer" id="test">
+		<div class="container">
+			<ul class="main-nav">
+				<li><a href="<c:url value='/main/main' />">Л≈░К╟⌡М┘°</a></li>
+				<li><a href="<c:url value='/user/list' />">Л┌╛Л ╘Л·░К╕╛Л┼╓М┼╦</a></li>
+				<li><a href="<c:url value='/boot' />">К╤─М┼╦Л┼╓М┼╦К·╘ Л⌡░КЁ╦</a></li>
+				<li class="small-logo">
+					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
+				</li>
+				<li><a href="<c:url value='/post/create/form' />">Й╦─Л·▒Л└╠</a></li>
+				
+				<!-- К║°Й╥╦Л²╦Л≈╛К╤─Л≈░ К■╟К²╪Л└° К▀╓К╕└ -->
+				<%
+    				UserManager manager = UserManager.getInstance();
+    				User us = manager.findUser(curUserId);
+    			%>
+    			
+				<c:choose>
+    				<c:when test='${sessionScope.user eq null}'>
+    					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
+      					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
+    				</c:when>
+    				<c:otherwise>
+      					<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><%=curUserId%>&nbsp;К▀≤</a></li>
+      					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
+    				</c:otherwise>
+    			</c:choose>
+
+			</ul>
+			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</nav>
 
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="<c:url value='/' />">©║ ╧ч еш</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="<c:url value='/user/list' />">╩Г©Кюз╦╝╫╨ф╝</a></li>
-      
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-    
-   
-   <c:choose>
-    	<c:when test='${sessionScope.user eq null}'>
-    		<li><a href="<c:url value='/user/register/form' />"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      		<li><a href="<c:url value='/user/login/form' />"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    	</c:when>
-    	<c:otherwise>
-      		<li><a><span class="glyphicon glyphicon-user"></span> <%=curUserId%>&nbsp;╢т</a></li>
-      		<li><a href="<c:url value='/user/logout' />"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-    	</c:otherwise>
-    </c:choose>
-    </ul>
-  </div>
-</nav>
+	<section class="business-talking">
+		<div class="container">
+			<h2>Л≈░К╟⌡М┘° М ▄Л⌡░Й╟─Л·┘</h2>
+		</div>
+	</section>
 
+	
+	
+	<div class="container">
 
-	<h1>х╦©Ь╟║ют</h1>
-	<div class="form">
-
-		<div id="sendmessage">х╦©Ь╟║ютю╩ гьаж╪е╪╜ ╟╗╩Ггу╢о╢ы!</div>
-
-		<form action="<c:url value='/user/register' />" method="post" role="form" class="contactForm">
+		<section class="main-section team" id="team">
+			
+			<div class="container">
+				<div class="row">
+				
+					<form action="<c:url value='/user/register' />" method="post" role="form" class="contactForm">
 			<div class="form-group">
 				<input type="text" name="user_id" class="form-control input-text" id="user_id"
 					placeholder="Id" data-rule="minlen:4"
@@ -81,8 +111,8 @@
 			
 			<script language=Javascript>
 
-				var maxChecked = 3;   //╪╠ец╟║╢и ╟╧╪Ж
-				var totalChecked = 0; // ╪Ёа╓ Ё║
+				var maxChecked = 3;   //Л└═М┐²Й╟─К┼╔ Й╟╞Л┬≤
+				var totalChecked = 0; // Л└╓Л═∙ К│²
 
 				function CountChecked(field) {
     				if (field.checked)
@@ -91,7 +121,7 @@
        					totalChecked -= 1;
 
     				if (totalChecked > maxChecked) {
-        				alert ("цж╢К 3╟Ё ╠НаЖ╦╦ ╟║╢игу╢о╢ы.");
+        				alert ("Л╣°К▄─ 3Й╟° Й╧▄Л╖─К╖▄ Й╟─К┼╔М∙╘К▀┬К▀╓.");
     					field.checked = false;
     					totalChecked -= 1;
     				}
@@ -104,29 +134,41 @@
 
 			</script>
 			
-			цж╢К <script>document.write(maxChecked);</script>╠НаЖ╦╦ ╪╠ецгр ╪Ж юж╫ю╢о╢ы.
+			Л╣°К▄─ <script>document.write(maxChecked);</script>Й╧▄Л╖─К╖▄ Л└═М┐²М∙═ Л┬≤ Л·┬Л┼╣К▀┬К▀╓.
 			<div class="form-group">
-				<input type="checkbox" name="interest" value="red" onclick=CountChecked(this)> ╩║╟╜
-				<input type="checkbox" name="interest" value="orange" onclick=CountChecked(this)> ажх╡
-				<input type="checkbox" name="interest" value="yellow" onclick=CountChecked(this)> ЁК╤Ш<br>
-				<input type="checkbox" name="interest" value="green" onclick=CountChecked(this)> цй╥о
-				<input type="checkbox" name="interest" value="blue" onclick=CountChecked(this)> фд╤Ш
-				<input type="checkbox" name="interest" value="purple" onclick=CountChecked(this)> ╨╦╤С<br>
-				<input type="checkbox" name="interest" value="gray" onclick=CountChecked(this)> х╦╩Ж
-				<input type="checkbox" name="interest" value="pink" onclick=CountChecked(this)> гне╘
-				<input type="checkbox" name="interest" value="black" onclick=CountChecked(this)> ╟ка╓<br>
-				<input type="checkbox" name="interest" value="white" onclick=CountChecked(this)> хР╩Ж
-				<input type="checkbox" name="interest" value="navy" onclick=CountChecked(this)> Ёвюл╨Я
-				<input type="checkbox" name="interest" value="lime" onclick=CountChecked(this)> ╤Сюс<br>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="red" onclick=CountChecked(this)> К╧╗Й╟∙</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="orange" onclick=CountChecked(this)> Лё╪М≥╘</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="yellow" onclick=CountChecked(this)> К┘╦К·▒</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="green" onclick=CountChecked(this)> Л╢┬К║²</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="blue" onclick=CountChecked(this)> М▄▄К·▒</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="purple" onclick=CountChecked(this)> КЁ╢К²╪</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="gray" onclick=CountChecked(this)> М ▄Л┐┴</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="pink" onclick=CountChecked(this)> М∙▒М│╛</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="black" onclick=CountChecked(this)> Й╡─Л═∙</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="white" onclick=CountChecked(this)> М²╟Л┐┴</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="navy" onclick=CountChecked(this)> К└╓Л²╢К╧└</label>
+				<label class="checkbox-inline"><input type="checkbox" name="interest" value="lime" onclick=CountChecked(this)> К²╪Л·└</label>
 				<div class="validation"></div>
-			</div>
 
 
 			<div class="text-center">
-				<button type="submit" class="btn btn-success">Sign</button>
+				<button type="submit" class="link delay-1s servicelink">М ▄Л⌡░Й╟─Л·┘</button>
 			</div>
 		</form>
+				</div>
+			</div>
+		</section>
 	</div>
+	
+	
+	
+	
+	
+
+		
+
+		
+	
 
 
 

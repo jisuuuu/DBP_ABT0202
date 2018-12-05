@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class PostCreateController implements Controller {
+	public class PostCreateController implements Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PostCreateController.class);
 
@@ -30,21 +30,18 @@ public class PostCreateController implements Controller {
 		request.setCharacterEncoding("UTF-8");
 		Post post = null;
 		
-
+	
 		MultipartHttpServletRequest multipartRequest = new MultipartHttpServletRequest(request);
 		post = multipartRequest.post;
-		logger.debug(post.toString());
+		
 
 		postDAO = new PostDAO();
 		postDAO.create(post);
-		Post p2 = postDAO.findPost2((String)session.getAttribute("user"), request.getParameter("post_title"), 
-					request.getParameter("post_content"));
 		
-		
-		request.setAttribute("post", p2);
+		Post p2 = postDAO.findPost2((String)session.getAttribute("user"), post.getTitle(), post.getContent());
 	
-//		return "/post/show.jsp";	
-		return "/main/main";
+
+		return "/post/create_ok.jsp?postId="+p2.getPost_id();
 	}
 
-}
+}		

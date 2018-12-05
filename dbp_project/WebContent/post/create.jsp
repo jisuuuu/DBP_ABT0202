@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="<c:url value='/js/wow.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
+	
 
 <title>에받템 글작성</title>
 </head>
@@ -94,19 +95,19 @@
   							</select>
   						</div>
   						
-  						<div class="form=group">
-  							<label class="checkbox-inline"><input type="checkbox" name="color" value="red" checked> 빨강</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="orange"> 주황</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="yellow"> 노랑</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="green"> 초록</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="blue"> 파랑</label>
-           					<label class="checkbox-inline"><input type="checkbox" name="color" value="purple"> 보라</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="gray"> 회색</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="pink"> 핑크</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="black"> 검정</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="white"> 흰색</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="navy"> 네이비</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" value="lime"> 라임</label>
+  						<div class="form-group">
+  							<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="red" checked> 빨강</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="orange"> 주황</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="yellow"> 노랑</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="green"> 초록</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="blue"> 파랑</label>
+           					<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="purple"> 보라</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="gray"> 회색</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="pink"> 핑크</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="black"> 검정</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="white"> 흰색</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="navy"> 네이비</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="lime"> 라임</label>
             			</div>
 					
 						<div class="form-group">

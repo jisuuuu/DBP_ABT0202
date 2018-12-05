@@ -13,7 +13,7 @@ public class Post {
 	private int down_count;
 	private String upload_date;
 	private String usage;
-	private String style;
+	private List<String> color = new ArrayList<String>();
 	private String thumnail;
 
 	public Post(int post_id) {
@@ -28,7 +28,7 @@ public class Post {
 		this.usage = usage;
 	}
 	
-	public Post(String consumer_id, String title, String content, String file_link, String post_file, String usage, String thumnail) {
+	public Post(String consumer_id, String title, String content, String file_link, String post_file, String usage, String thumnail, List<String> color) {
 		this.consumer_id = consumer_id;
 		this.title = title;
 		this.content = content;
@@ -36,10 +36,11 @@ public class Post {
 		this.post_file = post_file;
 		this.usage = usage;
 		this.thumnail = thumnail;
+		this.color = color;
 	}
 
 	public Post(int post_id, String consumer_id, String title, String content, String post_file, String file_link,
-			int down_count, String upload_date, String usage, String thumnail) {
+			int down_count, String upload_date, String usage, String thumnail, String color1, String color2) {
 		this.post_id = post_id;
 		this.consumer_id = consumer_id;
 		this.title = title;
@@ -50,6 +51,8 @@ public class Post {
 		this.upload_date = upload_date;
 		this.usage = usage;
 		this.thumnail = thumnail;
+		color.add(color1);
+		color.add(color2);
 	}
 
 	public int getPost_id() {
@@ -124,12 +127,20 @@ public class Post {
 		this.usage = usage;
 	}
 
-	public String getStyle() {
-		return style;
+	public List<String> getColor() {
+		return color;
+	}
+	
+	public String getColor1() {
+		return color.get(0);
+	}
+	
+	public String getColor2() {
+		return color.get(1);
 	}
 
-	public void setStyle(String style) {
-		this.style = style;
+	public void setColor(List<String> color) {
+		this.color = color;
 	}
 	
 	public String toString() {

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="model.Post" %>
-<%@page import="java.util.*" %>
 <%@page import="model.User" %>
+<%@page import="model.Post" %>
 <%@page import="model.service.UserManager" %>
 <%@page import="model.service.UserNotFoundException" %>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%
 	String curUserId = (String)session.getAttribute("user");
- 	Post post = (Post)request.getAttribute("post");
+ 	String postId = (String)request.getParameter("postId");
+ 			
 %>
 <!DOCTYPE html>
 <html>
@@ -33,8 +33,9 @@
 	<script type="text/javascript" src="<c:url value='/js/wow.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/classie.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/magnific-popup.js' />"></script>
+	
 
-	<title>에받템</title>
+<title>에받템 글작성 완료</title>
 </head>
 <body>
 
@@ -54,6 +55,7 @@
     				UserManager manager = UserManager.getInstance();
     				User us = manager.findUser(curUserId);
     			%>
+    			
 				<c:choose>
     				<c:when test='${sessionScope.user eq null}'>
     					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
@@ -69,72 +71,20 @@
 			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
 		</div>
 	</nav>
-	
-	
-	
-	
 
-<section class="main-section alabaster">
-		<!--main-section alabaster-start-->
+
+	<section class="main-section client-part" id="client">
+		<!--main-section client-part-start-->
 		<div class="container">
+			<b class="quote-right wow fadeInDown delay-03"><i class="fa fa-quote-right"></i></b>
 			<div class="row">
-			
-			
-			
-			<div class="drow">
-			
-			
-				<div class="col-sm-12">
-					<div class="dtitle">
-						<h1><%=post.getTitle()%></h1>
-						[<%=post.getUsage() %>] [<%=post.getColor1() %>] [<%=post.getColor2() %>]&nbsp; <i class="fa fa-dashboard"></i> Down Count | <%=post.getDown_count() %>
-					</div>
-					<hr>
+				<div class="col-lg-12">
+					<p class="client-part-haead wow fadeInDown delay-05">글 작성 완료!</p>
 				</div>
-  				
-  				
-  				
-  				<div class="col-sm-6">
-					<div class="dimg">
-						<img src="<c:url value='/img/${post.thumnail}' />" alt="이미지를 찾을 수 없습니다"/> 
-					</div>
-				</div>
-				<div class="col-sm-4 ">
-					<div class="dwriter">
-						<h4><i class="fa fa-pencil" aria-hidden="true"></i> <b><%=post.getConsumer_id() %></b></h4>
-						<%=post.getUpload_date() %>
-						<br>
-						<c:choose>
-    					<c:when test="${post.file_link eq null}">
-        					<a class="link2 delay-1s servicelink" href="<c:url value='/templet/${post.post_file}' />">다운로드</a>
-    					</c:when>
-    					<c:otherwise>
-    						<a class="link2 delay-1s servicelink" href="${post.file_link}" target="_blank">링크로 이동</a>
-    					</c:otherwise>
-					</c:choose>  	
-							
-					</div>
-						
-						
-						
-					<div class="dcon">
-						<%=post.getContent() %>
-					</div>
-				</div>
-  				
-  				
-  				
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-				
-			</div>
+			<ul class="client wow fadeIn delay-05s">
+				<li><a class="link delay-1s servicelink" href="<c:url value='/post/detail' />?postId=<%=postId%>">작성한글 확인하러가기</a></li>
+			</ul>
 		</div>
 	</section>
 	
@@ -145,6 +95,16 @@
 	
 	
 	
-
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-logo"><a href="#"><img src="<c:url value='/img/blogo.png' />" alt=""></a></div>
+			<span class="copyright">&copy; TEAM ABT All Rights Reserved</span>
+			<div class="credits">	
+				동덕여자대학교 데이터베이스프로그래밍<br>박보람 오소영 최지수
+			</div>
+		</div>
+	</footer>
+	
+	
 </body>
 </html>
