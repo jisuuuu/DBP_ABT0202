@@ -79,12 +79,18 @@
 				<div class="validation"></div>
 			</div>
 			<div class="form-group">
-				<input type="checkbox" name="interest" value="one" checked> one
-				<input type="checkbox" name="interest" value="two"> two
-				<input type="checkbox" name="interest" value="three"> three<br>
-				<input type="checkbox" name="interest" value="four"> four
-				<input type="checkbox" name="interest" value="five"> five
-				<input type="checkbox" name="interest" value="six"> six<br>
+				<input type="checkbox" name="interest" value="red" checked> 빨강
+				<input type="checkbox" name="interest" value="orange"> 주황
+				<input type="checkbox" name="interest" value="yellow"> 노랑<br>
+				<input type="checkbox" name="interest" value="green"> 초록
+				<input type="checkbox" name="interest" value="blue"> 파랑
+				<input type="checkbox" name="interest" value="purple"> 보라<br>
+				<input type="checkbox" name="interest" value="gray"> 회색
+				<input type="checkbox" name="interest" value="pink"> 핑크
+				<input type="checkbox" name="interest" value="black"> 검정<br>
+				<input type="checkbox" name="interest" value="white"> 흰색
+				<input type="checkbox" name="interest" value="navy"> 네이비
+				<input type="checkbox" name="interest" value="lime"> 라임<br>
 				<div class="validation"></div>
 			</div>
 

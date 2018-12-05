@@ -80,8 +80,8 @@
 	  <table style="background-color: YellowGreen">
 		<tr>
 		  <td width="190" align="center" bgcolor="E6ECDE" height="22">사용자 ID</td>
-		  <td width="200" align="center" bgcolor="E6ECDE">이름</td>
-		  <td width="200" align="center" bgcolor="E6ECDE">이메일</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">닉네임</td>
+		  <td width="200" align="center" bgcolor="E6ECDE">포인트</td>
 		  <td width="200" align="center" bgcolor="E6ECDE">관심사</td>
 		</tr>
 <%
@@ -107,6 +107,12 @@
 		  </td>
 		  <td width="200" align="center" bgcolor="ffffff" height="20">
 			  <%=user.getInterest1()%>
+			  <%
+			  	if (user.getInterest2() != null)
+			  		out.print(user.getInterest2());
+			  	if (user.getInterest3() != null)
+			  		out.print(user.getInterest3());
+			  %>
 		  </td>
 		</tr>
 <%

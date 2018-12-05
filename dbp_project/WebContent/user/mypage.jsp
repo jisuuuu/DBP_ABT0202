@@ -97,6 +97,12 @@
 						<div class="service-list-col2">
 							<h3><%= user.getUser_id() %>님의 관심사</h3>
 							<p><%= user.getInterest1() %></p>
+							<%
+			  					if (user.getInterest2() != null)
+			  						out.println(user.getInterest2());
+			  					if (user.getInterest3() != null)
+			  						out.println(user.getInterest3());
+			  				%>
 						</div>
 					</div>
 					<div class="service-list">
@@ -112,23 +118,6 @@
 			</div>
 		</div>
 	</section>
-	<!--main-section-end-->
-<!-- 	<table>
-		<tr>
-			<td>아이디</td>
-			<td><%= user.getUser_id() %></td>
-		</tr>
-		<tr>
-			<td>닉네임 아이디</td>
-			<td><%= user.getNickname() %></td>
-		</tr>
-		<tr>
-			<td>관심사</td>
-			<td><%= user.getInterest1() %></td>
-		</tr>
-		
-	</table> 
--->
 	
 	<footer class="footer">
 		<div class="container">

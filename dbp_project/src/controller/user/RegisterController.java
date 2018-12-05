@@ -17,8 +17,10 @@ public class RegisterController implements Controller{
 			request.getParameter("user_id"),
 			request.getParameter("nickname"),
 			request.getParameter("password"),
-			request.getParameter("total_point"),
-			request.getParameter("interest1")
+			Integer.parseInt(request.getParameter("total_point")),
+			request.getParameter("interest1"),
+			request.getParameter("interest2"),
+			request.getParameter("interest3")
 		);
         
 

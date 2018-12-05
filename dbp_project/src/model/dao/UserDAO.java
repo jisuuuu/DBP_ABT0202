@@ -15,9 +15,10 @@ public class UserDAO {
 	
 	//사용자 생성
 	public int create(User user) throws SQLException {
-		String sql = "INSERT INTO CONSUMER (consumer_id, password, nickname, interest1) "
-				+ "VALUES (?, ?, ?, ?)";		
-		Object[] param = new Object[] {user.getUser_id(), user.getPassword(), user.getNickname(), user.getInterest1()};				
+		String sql = "INSERT INTO CONSUMER (consumer_id, password, nickname, interest1, interest2, interest3) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {user.getUser_id(), user.getPassword(), user.getNickname(), 
+				user.getInterest1(), user.getInterest2(), user.getInterest3()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
 		try {				
@@ -40,14 +41,15 @@ public class UserDAO {
 	 * 저장하여 반환.
 	 */
 	public User findUser(String user_id) throws SQLException {
-        String sql = "SELECT password, nickname, total_point, interest1 "
+        String sql = "SELECT password, nickname, total_point, interest1, interest2, interest3 "
         			+ "FROM CONSUMER WHERE consumer_id = ? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {user_id});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						
-				User user = new User( user_id, rs.getString("password"), rs.getString("nickname"), rs.getInt("total_point"), rs.getString("interest1") );
+				User user = new User( user_id, rs.getString("password"), rs.getString("nickname"), rs.getInt("total_point"), 
+						rs.getString("interest1"), rs.getString("interest2"), rs.getString("interest3") );
 				return user;
 			}
 		} catch (Exception ex) {
@@ -93,7 +95,7 @@ public class UserDAO {
 	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 	 */
 	public List<User> findUserList() throws SQLException {
-        String sql = "SELECT consumer_id, password, nickname, total_point, interest1 " 
+        String sql = "SELECT consumer_id, password, nickname, total_point, interest1, interest2, interest3 " 
         		   + "FROM CONSUMER";
 		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
 					
@@ -106,7 +108,9 @@ public class UserDAO {
 					rs.getString("password"),
 					rs.getString("nickname"),
 					rs.getInt("total_point"),
-					rs.getString("interest1"));	
+					rs.getString("interest1"),
+					rs.getString("interest2"),
+					rs.getString("interest3"));	
 				userList.add(user);				// List에 User 객체 저장
 			}		
 			return userList;					
@@ -124,7 +128,7 @@ public class UserDAO {
 	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
 	 */
 	public List<User> findUserList(int currentPage, int countPerPage) throws SQLException {
-        String sql = "SELECT consumer_id, password, nickname, total_point, interest1 " 
+        String sql = "SELECT consumer_id, password, nickname, total_point, interest1, interest2, interest3 " 
         		   + "CONSUMER ORDER BY consumer_id";
 		jdbcUtil.setSqlAndParameters(sql, null,					// JDBCUtil에 query문 설정
 				ResultSet.TYPE_SCROLL_INSENSITIVE,				// cursor scroll 가능
@@ -141,7 +145,9 @@ public class UserDAO {
 							rs.getString("password"),
 							rs.getString("nickname"),
 							rs.getInt("total_point"),
-							rs.getString("interest1"));	
+							rs.getString("interest1"),
+							rs.getString("interest2"),
+							rs.getString("interest3"));	
 					userList.add(user);							// 리스트에 User 객체 저장
 				} while ((rs.next()) && (--countPerPage > 0));		
 				return userList;							
