@@ -86,14 +86,28 @@
 					<form action="<c:url value='/post/create' />" method="post" role="form" class="contactForm" enctype="multipart/form-data">
 					
 						<div class="form-group">
-  							<label for="useage"> Usage list:</label>
   							<select class="form-control" name="usage" id="usage">
-    							<option>u1</option>
-    							<option>u2</option>
-   								<option>u3</option>
-    							<option>u4</option>
+    							<option>발표</option>
+    							<option>교육</option>
+   								<option>SNS</option>
+    							<option>기획서</option>
   							</select>
-						</div>
+  						</div>
+  						
+  						<div class="form=group">
+  							<label class="checkbox-inline"><input type="checkbox" name="color" value="red" checked> 빨강</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="orange"> 주황</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="yellow"> 노랑</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="green"> 초록</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="blue"> 파랑</label>
+           					<label class="checkbox-inline"><input type="checkbox" name="color" value="purple"> 보라</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="gray"> 회색</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="pink"> 핑크</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="black"> 검정</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="white"> 흰색</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="navy"> 네이비</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" value="lime"> 라임</label>
+            			</div>
 					
 						<div class="form-group">
 							<input type="text" name="post_title" class="form-control input-text" id="post_title"

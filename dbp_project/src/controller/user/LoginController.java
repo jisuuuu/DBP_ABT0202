@@ -22,7 +22,14 @@ public class LoginController implements Controller {
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
             
-            return "redirect:/user/list";			
+            String redirectUrl = (String) session.getAttribute("url_prior_login");
+            
+            if (redirectUrl != null ) {
+            	return "redirect:"+redirectUrl;
+            }
+
+            
+            return "redirect:/main/main";			
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시
 			 * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력

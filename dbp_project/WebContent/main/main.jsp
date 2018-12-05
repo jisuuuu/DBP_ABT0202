@@ -55,7 +55,7 @@
 			<ul class="we-create animated fadeInUp delay-1s">
 				<li>A+ 받는 템플릿</li>
 			</ul>
-			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
+			<a class="link animated fadeInUp delay-1s servicelink" href="#test">Get Started</a>
 		</div>
 	</header>
 	
@@ -99,10 +99,10 @@
 			<div class="portfolioFilter">
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">All</a></li>
-					<li><a href="#" data-filter=".u1">용도 1</a></li>
-					<li><a href="#" data-filter=".u2">용도 2</a></li>
-					<li><a href="#" data-filter=".u3">용도 3</a></li>
-					<li><a href="#" data-filter=".u4">용도 4</a></li>
+					<li><a href="#" data-filter=".발표">발표</a></li>
+					<li><a href="#" data-filter=".교육">교육</a></li>
+					<li><a href="#" data-filter=".SNS">SNS</a></li>
+					<li><a href="#" data-filter=".기획서">기획서</a></li>
 				</ul>
 			</div>
 
@@ -116,7 +116,7 @@
 				Post post = (Post)p.next();
 %>		  	
 				<div class="Portfolio-box <%=post.getUsage()%>">	
-					 <a href="<c:url value='/post/detail' />?postId=<%=post.getPost_id()%>">          
+					 <a href="<c:url value='/post/detail' />?postId=<%=post.getPost_id()%>">			           
   						<img src="<c:url value='/img/Portfolio-pic1.jpg' />" alt="">
   					</a>         
   						<h2><%=post.getTitle()%></h2>

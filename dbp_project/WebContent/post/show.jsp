@@ -78,44 +78,61 @@
 		<!--main-section alabaster-start-->
 		<div class="container">
 			<div class="row">
-				<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-				
-				<img src="<c:url value='/img/${post.thumnail}' />" alt="no!"/> 
-				
-				
-				</figure>
-				<div class="col-lg-7 col-sm-8 featured-work">
-					<h2><%=post.getTitle()%></h2>
-					<P class="padding-b"><%=post.getContent() %> <br>Writer :: <%=post.getConsumer_id() %></P>
-					<div class="featured-box">
-						<div class="featured-box-col1 wow fadeInRight delay-02s">
-							<i class="fa fa-magic"></i>
-						</div>
-						<div class="featured-box-col2 wow fadeInRight delay-02s">
-							<h3>UPLOAD DATE</h3>
-							<p><%=post.getUpload_date() %> </p>
-						</div>
+			
+			
+			
+			<div class="drow">
+			
+			
+				<div class="col-sm-12">
+					<div class="dtitle">
+						<h1><%=post.getTitle()%></h1>
+						[<%=post.getUsage() %>] &nbsp; <i class="fa fa-dashboard"></i> Down Count | <%=post.getDown_count() %>
 					</div>
-					<div class="featured-box">
-						<div class="featured-box-col1 wow fadeInRight delay-04s">
-							<i class="fa fa-gift"></i>
-						</div>
-						<div class="featured-box-col2 wow fadeInRight delay-04s">
-							<h3>USAGE</h3>
-							<p><%=post.getUsage() %> </p>
-						</div>
-					</div>
-					<div class="featured-box">
-						<div class="featured-box-col1 wow fadeInRight delay-06s">
-							<i class="fa fa-dashboard"></i>
-						</div>
-						<div class="featured-box-col2 wow fadeInRight delay-06s">
-							<h3>DOWN COUNT</h3>
-							<p><%=post.getDown_count() %></p>
-						</div>
-					</div>
-					<a class="Learn-More" href="#">Learn More</a>
 				</div>
+  				
+  				
+  				
+  				<div class="col-sm-6">
+					<div class="dimg">
+						<img src="<c:url value='/img/${post.thumnail}' />" alt="이미지를 찾을 수 없습니다"/> 
+					</div>
+				</div>
+				<div class="col-sm-4 ">
+					<div class="dwriter">
+						<h4><i class="fa fa-pencil" aria-hidden="true"></i> <b><%=post.getConsumer_id() %></b></h4>
+						<%=post.getUpload_date() %>
+						<br>
+						<c:choose>
+    					<c:when test="${post.file_link eq null}">
+        					<a class="link2 delay-1s servicelink" href="<c:url value='/templet/${post.post_file}' />">다운로드</a>
+    					</c:when>
+    					<c:otherwise>
+    						<a class="link2 delay-1s servicelink" href="${post.file_link}" target="_blank">링크로 이동</a>
+    					</c:otherwise>
+					</c:choose>  	
+							
+					</div>
+						
+						
+						
+					<div class="dcon">
+						<%=post.getContent() %>
+					</div>
+				</div>
+  				
+  				
+  				
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+				
 			</div>
 		</div>
 	</section>

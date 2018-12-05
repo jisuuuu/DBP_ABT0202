@@ -40,7 +40,7 @@ public class PostCreateController implements Controller {
 		Post p2 = postDAO.findPost2((String)session.getAttribute("user"), request.getParameter("post_title"), 
 					request.getParameter("post_content"));
 		
-
+		
 		request.setAttribute("post", p2);
 	
 //		return "/post/show.jsp";	
