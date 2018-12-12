@@ -119,18 +119,58 @@
 				</div>
 			
 				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-					<h2><%= user.getUser_id() %>의 작성글</h2><br>
-					<c:forEach items="${postList}" var="post" varStatus="status">
-						<a href="<c:url value='/post/detail' />?postId=${post.post_id}">
-							<h4>#${status.count} &nbsp; [${post.usage}] &nbsp; ${post.title}</h4>
-						</a>
-						<hr>
-  					</c:forEach>
+				
+				
+					<ul class="nav nav-tabs nav-justified">
+    					<li class="active">
+      						<a class="nav-link active"  data-toggle="tab" href="#mypost">내가 쓴 글</a>
+    					</li>
+    					<li class="nav-item">
+     						 <a class="nav-link"  data-toggle="tab" href="#myscrap">다운로드 한 글</a>
+    					</li>
+    					<li class="nav-item">
+      						<a class="nav-link"  data-toggle="tab" href="#mycom">댓글</a>
+   						</li>
+    
+    				</ul>
+
+<br><br>
+
+<div class="tab-content">
+  <div class="tab-pane container active" id="mypost">
+      
+      <table class="table table-hover">
+          <thead>
+              <tr>
+              	<th>Index</th>
+              	<th>카테고리</th>
+              	<th>색상</th>
+                <th>제목</th>
+                
+              </tr>
+              <c:forEach items="${postList}" var="post" varStatus="status">
+              		<tr onClick = " location.href='<c:url value='/post/detail' />?postId=${post.post_id}">
+              			<td>${status.count}</td>
+              			<td>${post.usage}</td>
+						<td>${post.color[0]} &nbsp; ${post.color[1]}</td>
+						<td>${post.title} </td>
+					</tr>
+  			</c:forEach>
+         </thead>
+         <tbody>
+            
+        </tbody>
+      </table>
+  </div>
 				</div>
 				
 			</div>
 		</div>
 	</section>
+	
+	
+	
+	
 	
 	<footer class="footer">
 		<div class="container">

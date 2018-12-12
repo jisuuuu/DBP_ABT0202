@@ -47,6 +47,8 @@ import org.slf4j.LoggerFactory;
 		pointDAO = new PointDAO();
 		pointDAO.GivePoint((String)session.getAttribute("user"));
 		
+		pointDAO.RecordPoint("get", p2.getPost_id(), (String)session.getAttribute("user"));
+		
 		
 	
 

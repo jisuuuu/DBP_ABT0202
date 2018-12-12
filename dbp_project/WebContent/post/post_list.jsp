@@ -89,7 +89,7 @@
 		<!--main-section-start-->
 		<div class="container">
 			<h2>POWERPOINT TEMPLATES</h2>
-			<h6>템플릿 이용해서 발표 뽀개버리기-! 개꿀🍯</h6><br>
+			<h6>🍯 템플릿을 모두 모았다 🍯</h6><br>
 			<div class="portfolioFilter">
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">All</a></li>
@@ -109,6 +109,7 @@
 				<span class="label label-default">
 					<a href="<c:url value='/post/list' />?sort=downcount" style="color:white;">다운로드 카운트순 정렬</a>
 				</span>
+				<br><br>
 			</div>
 
 		</div>
