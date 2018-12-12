@@ -78,21 +78,21 @@
 			<!--main-section alabaster-start-->
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-7 col-sm-8 featured-work">
+					<div class="featured-work">
 
 						<!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 						<c:if test="${loginFailed}">
-							<br>
-							<h2>
-								<font color="red"><i class="fa fa-magic"></i>
-								<c:out value="${exception.getMessage()}" /></font>
-							</h2>
-							<br>
+							<div class="alert alert-warning alert-dismissible">
+ 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  								<strong><i class="fa fa-exclamation-circle" aria-hidden="true"></i> &nbsp;
+  									${exception.getMessage()}
+  								</strong>
+							</div>
 						</c:if>
 					</div>
 				</div>
 
-				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+				<div class="wow fadeInUp delay-05s">
 					<div class="form">
 
 						<form action="<c:url value='/user/login' />" method="post" role="form" class="contactForm" >
@@ -110,7 +110,7 @@
 							</div>
 
 
-							<button type="submit" class="input-btn">Login</button>
+							<button type="submit" class="input-btn" style="float:right">Login</button>
 						</form>
 					</div>
 				</div>
