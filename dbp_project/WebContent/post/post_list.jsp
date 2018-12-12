@@ -100,10 +100,22 @@
 				</ul>
 			</div>
 
+			
+			<div style="float:right">
+				<input class="form-control" id="myInput" type="text" placeholder="Search Color"><br>
+				<span class="label label-default">
+					<a href="<c:url value='/post/list' />" style="color:white;">최신순 정렬</a> 
+				</span>&nbsp;
+				<span class="label label-default">
+					<a href="<c:url value='/post/list' />?sort=downcount" style="color:white;">다운로드 카운트순 정렬</a>
+				</span>
+			</div>
+
 		</div>
 		<div class="portfolioContainer wow fadeInUp delay-04s">
+			
 			<c:forEach items="${postList}" var="post" varStatus="status">
-				<div class="Portfolio-box ${post.usage}">	
+				<div class="Portfolio-box ${post.usage}" id="${post.color[0]} ${post.color[1]}">	
 					 <a href="<c:url value='/post/detail' />?postId=${post.post_id}">			           
   						<img src="<c:url value='/img/${post.thumnail}' />" alt="" width="350px" height="263px">
   					</a>         
@@ -111,12 +123,20 @@
 
 				</div>
   			</c:forEach>
+  			
 		</div>
 		
 	</section>
 	
 		
 	</div>
+	
+	
+	
+  
+  
+
+
 	
 	<footer class="footer">
 		<div class="container">
@@ -130,12 +150,20 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
+	<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+	  
+	  
+	  
+    var value = $(this).val().toLowerCase();
+    $(".Portfolio-box").filter(function() {
+      $(this).toggle($(this).attr("id").toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 	
 	<script type="text/javascript">
 		$(document).ready(function(e) {

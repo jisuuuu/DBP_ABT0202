@@ -4,8 +4,8 @@
 <%@page import="model.User" %>
 <%@page import="model.service.UserManager" %>
 <%@page import="model.service.UserNotFoundException" %>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
  	@SuppressWarnings("unchecked") 
 	List<Post> postList = (List<Post>)request.getAttribute("postList");
  	String curUserId = (String)session.getAttribute("user");
@@ -68,7 +68,7 @@
 		<div class="container">
 			<ul class="main-nav">
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
-				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
 				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
 				<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				<li><a href="<c:url value='/post/create/form' />">글작성</a></li>
