@@ -9,6 +9,7 @@
  	@SuppressWarnings("unchecked") 
 	List<Post> postList = (List<Post>)request.getAttribute("postList");
  	String curUserId = (String)session.getAttribute("user");
+ 	
 %>
 <!DOCTYPE html>
 <html>

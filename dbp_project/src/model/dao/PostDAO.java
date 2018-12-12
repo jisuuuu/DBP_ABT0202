@@ -265,6 +265,35 @@ public class PostDAO {
 					}
 					return null;
 				}
+		
+		
+		//다운받은 글 목록 불러오기
+				public  List<Post> findPostListByDown(String user_id) throws SQLException {
+			        String sql = "SELECT post.post_id, post.title, post.usage, post.color1, post.color2 " + 
+			        		"FROM post, point " + 
+			        		"WHERE post.post_id = point.post_id AND point.use_or_get = ? AND point.consumer_id = ?";
+			        Object[] param = new Object[] {"use", user_id} ;
+					jdbcUtil.setSqlAndParameters(sql, param);		
+								
+					try {
+						ResultSet rs = jdbcUtil.executeQuery();				
+						List<Post> postList = new ArrayList<Post>();	
+						while (rs.next()) {
+							Post post = new Post(
+								rs.getInt("post_id"), rs.getString("title"),
+								rs.getString("usage"),
+								rs.getString("color1"), rs.getString("color2"));	
+							postList.add(post);				
+						}		
+						return postList;					
+						
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					} finally {
+						jdbcUtil.close();		// resource 반환
+					}
+					return null;
+				}
 
 }
 

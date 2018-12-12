@@ -28,6 +28,14 @@ public class Post {
 		this.usage = usage;
 	}
 	
+	public Post(int post_id, String title, String usage, String color1, String color2) {
+		this.post_id = post_id;
+		this.title = title;
+		this.usage = usage;
+		color.add(color1);
+		color.add(color2);
+	}
+	
 	public Post(String consumer_id, String title, String content, String file_link, String post_file, String usage, String thumnail, List<String> color) {
 		this.consumer_id = consumer_id;
 		this.title = title;

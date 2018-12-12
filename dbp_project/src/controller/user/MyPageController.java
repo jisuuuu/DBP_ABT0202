@@ -36,6 +36,10 @@ public class MyPageController implements Controller {
     	List<Post> postList = postDAO.findPostListByUser(userId);
     	request.setAttribute("postList", postList);	
     	
+    	
+    	List<Post> DownpostList = postDAO.findPostListByDown(userId);
+    	request.setAttribute("downpostList", DownpostList);	
+    	
     	request.setAttribute("user", user);
     	return "/user/mypage.jsp";
     	

@@ -10,6 +10,7 @@
 	String curUserId = (String)session.getAttribute("user");
 	User user = (User)request.getAttribute("user");
 	List<Post> postList = (List<Post>)request.getAttribute("postList");
+	List<Post> downpostList = (List<Post>)request.getAttribute("downpostList");
 %>
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,7 @@
 		<div class="container">
 			<ul class="main-nav">
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
-				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
 				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
 				<li class="small-logo">
 					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
@@ -78,7 +79,6 @@
 		</div>
 	</section>
 	<section class="main-section" id="service">
-		<!--main-section-start-->
 		<div class="container">
 			
 			<div class="row">
@@ -118,53 +118,76 @@
 					</div>
 				</div>
 			
-				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-				
-				
+				<div class="col-lg-6 col-sm-6 wow fadeInUp delay-05s">
 					<ul class="nav nav-tabs nav-justified">
     					<li class="active">
       						<a class="nav-link active"  data-toggle="tab" href="#mypost">내가 쓴 글</a>
     					</li>
     					<li class="nav-item">
-     						 <a class="nav-link"  data-toggle="tab" href="#myscrap">다운로드 한 글</a>
+     						 <a class="nav-link"  data-toggle="tab" href="#mydown">다운로드 한 글</a>
     					</li>
-    					<li class="nav-item">
-      						<a class="nav-link"  data-toggle="tab" href="#mycom">댓글</a>
-   						</li>
-    
     				</ul>
-
-<br><br>
-
-<div class="tab-content">
-  <div class="tab-pane container active" id="mypost">
-      
-      <table class="table table-hover">
-          <thead>
-              <tr>
-              	<th>Index</th>
-              	<th>카테고리</th>
-              	<th>색상</th>
-                <th>제목</th>
-                
-              </tr>
-              <c:forEach items="${postList}" var="post" varStatus="status">
-              		<tr onClick = " location.href='<c:url value='/post/detail' />?postId=${post.post_id}">
-              			<td>${status.count}</td>
-              			<td>${post.usage}</td>
-						<td>${post.color[0]} &nbsp; ${post.color[1]}</td>
-						<td>${post.title} </td>
-					</tr>
-  			</c:forEach>
-         </thead>
-         <tbody>
+    				<br>
+					<div class="tab-content">
+						<div class="tab-pane container active col-sm-12" id="mypost">
+     
+      					<table class="table table-hover container">
+          					<thead>
+              					<tr>
+              						<th>Index</th>
+              						<th>카테고리</th>
+              						<th>색상</th>
+              						<th>제목</th>
+              						<th></th>
+              					</tr>
+         					</thead>
+         					<tbody>
+         						<c:forEach items="${postList}" var="post" varStatus="status">
+              						<tr>
+              							<td>${status.count}</td>
+              							<td>${post.usage}</td>
+										<td>${post.color[0]} &nbsp; ${post.color[1]}</td>
+										<td>${post.title} </td>
+										<td><a class="link delay-1s servicelink btn-sm" href="<c:url value='/post/detail' />?postId=${post.post_id}">조회</a></td>
+									</tr>
+  								</c:forEach>
             
-        </tbody>
-      </table>
-  </div>
-				</div>
+       					 	</tbody>
+      					</table>
+  						</div>
+  						
+  						
+  						<div class="tab-pane container col-sm-12" id="mydown">
+     
+      					<table class="table table-hover container">
+          					<thead>
+              					<tr>
+              						<th>Index</th>
+              						<th>카테고리</th>
+              						<th>색상</th>
+              						<th>제목</th>
+              						<th></th>
+              					</tr>
+         					</thead>
+         					<tbody>
+         						<c:forEach items="${downpostList}" var="post" varStatus="status">
+              						<tr>
+              							<td>${status.count}</td>
+              							<td>${post.usage}</td>
+										<td>${post.color[0]} &nbsp; ${post.color[1]}</td>
+										<td>${post.title} </td>
+										<td><a class="link delay-1s servicelink btn-sm" href="<c:url value='/post/detail' />?postId=${post.post_id}">조회</a></td>
+									</tr>
+  								</c:forEach>
+            
+       					 	</tbody>
+      					</table>
+  						</div>
+  					</div>
 				
 			</div>
+		</div>
+		
 		</div>
 	</section>
 	
