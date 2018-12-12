@@ -194,6 +194,39 @@ public class PostDAO {
 			}
 			return null;
 		}
+		//색깔로 글 목록 불러오기
+		public  List<Post> findPostListByColor(String interest1, String interest2, String interest3) throws SQLException {
+			String sql = "SELECT * " + "FROM POST WHERE COLOR1 = ? OR COLOR1 = ? OR COLOR1 = ? OR COLOR2 = ? OR COLOR2 = ? OR COLOR2 = ?";
+			Object[] param = new Object[] {interest1, interest2, interest3, interest1, interest2, interest3} ;
+			jdbcUtil.setSqlAndParameters(sql, param);		
+			
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();		
+				List<Post> postList = new ArrayList<Post>();
+				
+				while (rs.next()) {
+					DateFormat df = new java.text.SimpleDateFormat("yyyy.MM.dd a h:mm");
+					Date utilDate = new java.util.Date(rs.getDate("upload_date").getTime());
+					String dateString = df.format(utilDate);
+					
+					Post post = new Post(
+							rs.getInt("post_id"), rs.getString("consumer_id"),
+							rs.getString("title"), rs.getString("content"),
+							rs.getString("post_file"), rs.getString("file_link"),
+							rs.getInt("down_count"), dateString, 
+							rs.getString("usage"), rs.getString("thumnail"),
+							rs.getString("color1"), rs.getString("color2"));	
+							postList.add(post);				
+					}		
+				return postList;					
+						
+			} catch (Exception ex) {
+					ex.printStackTrace();
+			} finally {
+					jdbcUtil.close();		// resource 반환
+			}
+			return null;
+		}
 	
 	
 	//글 하나 불러오기

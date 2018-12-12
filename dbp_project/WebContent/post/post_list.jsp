@@ -4,6 +4,7 @@
 <%@page import="model.User" %>
 <%@page import="model.User" %>
 <%@page import="model.service.UserManager" %>
+<%@page import="model.service.PostManager" %>
 <%@page import="model.service.UserNotFoundException" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -100,6 +101,25 @@
 				</ul>
 			</div>
 
+			<div style="float:left">
+				<span style="margin-left:500px">
+					<input class="btn" type="button" value="회원 별 추천"><br/>
+					<%
+    				PostManager mgr = PostManager.getInstance();
+    				List<Post> postList2 = (List<Post>)mgr.findPostListByColor(us.getInterest1(), us.getInterest2(), us.getInterest3());
+    				System.out.println(postList);
+    				System.out.println(postList2);
+    				%>
+    				<div id="recommendRegion" style="overflow-y:scroll; height:100px;">
+    					<c:forEach items="${postList2}" var="post" varStatus="status">
+              							${status.count}
+              							${post.usage}${post.color[0]} &nbsp; ${post.color[1]}${post.title} 
+										<a class="link delay-1s servicelink btn-sm" href="<c:url value='/post/detail' />?postId=${post.post_id}">조회</a>
+										<br/>
+  						</c:forEach>
+    				</div>
+				</span>
+			</div>
 			
 			<div style="float:right">
 				<input class="form-control" id="myInput" type="text" placeholder="Search Color"><br>
@@ -150,7 +170,18 @@
 	</footer>
 	
 	
-	
+<script>
+	$(document).ready(function() {
+        $("#recommendRegion").hide();
+
+        $("input.btn").click(function() {
+
+            $("#recommendRegion").show();
+
+        });
+
+    });
+</script>
 	<script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
