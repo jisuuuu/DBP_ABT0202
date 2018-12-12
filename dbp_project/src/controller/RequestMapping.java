@@ -31,7 +31,9 @@ public class RequestMapping {
         //post 관련 
         mappings.put("/post/create/form", new PostFormController());
         mappings.put("/post/create", new PostCreateController());
+        mappings.put("/post/list", new PostListController());
         mappings.put("/post/detail", new PostDetailController());
+        mappings.put("/post/download", new FileDownController());
         
         //초기 부트스트랩
         mappings.put("/boot", new ForwardController("bootstrap.jsp"));

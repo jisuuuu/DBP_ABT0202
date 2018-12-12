@@ -10,17 +10,19 @@ import controller.Controller;
 import controller.DispatcherServlet;
 import controller.post.MultipartHttpServletRequest;
 import model.Post;
+import model.dao.PointDAO;
 import model.dao.PostDAO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-	public class PostCreateController implements Controller {
+public class PostCreateController implements Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PostCreateController.class);
 
 	private PostDAO postDAO = null; 
+	PointDAO pointDAO = null;
 	Post post = null;
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -37,9 +39,13 @@ import org.slf4j.LoggerFactory;
 
 		postDAO = new PostDAO();
 		postDAO.create(post);
-		postDAO.GivePoint((String)session.getAttribute("user"));
 		
 		Post p2 = postDAO.findPost2((String)session.getAttribute("user"), post.getTitle(), post.getContent());
+		
+		pointDAO = new PointDAO();
+		pointDAO.GivePoint((String)session.getAttribute("user"));
+		
+		
 	
 
 		return "/post/create_ok.jsp?postId="+p2.getPost_id();
