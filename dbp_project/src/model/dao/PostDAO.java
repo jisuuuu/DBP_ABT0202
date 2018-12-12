@@ -194,6 +194,7 @@ public class PostDAO {
 			}
 			return null;
 		}
+		
 		//색깔로 글 목록 불러오기
 		public  List<Post> findPostListByColor(String interest1, String interest2, String interest3) throws SQLException {
 			String sql = "SELECT * " + "FROM POST WHERE COLOR1 = ? OR COLOR1 = ? OR COLOR1 = ? OR COLOR2 = ? OR COLOR2 = ? OR COLOR2 = ?";
