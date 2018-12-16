@@ -5,6 +5,12 @@ public class Review extends Post{
 	private String consumer_id;
 	private String review_content;
 	
+	public Review(int post_id, String consumer_id, String review_content) {
+		super(post_id);
+		this.consumer_id = consumer_id;
+		this.review_content = review_content;
+	}
+	
 	public Review(int post_id, int review_id, String consumer_id, String review_content) {
 		super(post_id);
 		this.review_id = review_id;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="model.Post" %>
+<%@page import="model.Review" %>
 <%@page import="java.util.*" %>
 <%@page import="model.User" %>
 <%@page import="model.service.UserManager" %>
@@ -8,6 +9,7 @@
  <%
 	String curUserId = (String)session.getAttribute("user");
  	Post post = (Post)request.getAttribute("post");
+ 	Review review = (Review)request.getAttribute("review");
 %>
 <!DOCTYPE html>
 <html>
@@ -74,16 +76,11 @@
 	
 	
 
-<section class="main-section alabaster">
+	<section class="main-section alabaster">
 		<!--main-section alabaster-start-->
 		<div class="container">
 			<div class="row">
-			
-			
-			
 			<div class="drow">
-			
-			
 				<div class="col-sm-12">
 					<div class="dtitle">
 						<h1><%=post.getTitle()%></h1>
@@ -91,8 +88,6 @@
 					</div>
 					<hr>
 				</div>
-  				
-  				
   				
   				<div class="col-sm-6">
 					<div class="dimg">
@@ -114,28 +109,55 @@
 					</c:choose>  	
 							
 					</div>
-						
-						
-						
+										
 					<div class="dcon">
 						<%=post.getContent() %>
 					</div>
 				</div>
   				
-  				
-  				
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
 				
 			</div>
 		</div>
+	</section>
+	
+	
+	<section class="main-section team" id="team">
+			
+			<div class="container">
+				<div class="card border-danger mb-3" style="max-width: 18rem;">
+					<c:forEach var="review" items="${reviewList}">
+						<b>${ review.getReview_id() } 번째 댓글</b> <br/>
+  						<div class="card-header">작성자 ${ review.getConsumer_id() }</div>
+  						<div class="card-body text-danger">
+    					<p class="card-text">${ review.getReview_content() }</p>
+  						</div>
+  					</c:forEach>
+				</div>
+				<!--  <div class="commentList">
+					<c:forEach var="review" items="${reviewList}">
+						<b>${ review.getReview_id() } 번째 댓글</b> <br/>
+						<b>작성자 : ${ review.getConsumer_id() }</b>
+						<h3>${ review.getReview_content() }</h3> <br/>
+  					</c:forEach>
+				</div>-->
+			
+				<div class="row">
+					<form action="<c:url value='/post/detail' />?postId=${post.post_id}" method="post" role="form" class="contactForm">
+					
+						<input type="hidden" name="postId" value="${post.post_id}">
+						<div class="form-group">
+  							<textarea class="form-control" rows="10" id="content" name="content"></textarea>
+						</div>
+						
+						<div class="text-center">
+							<button type="submit" class="input-btn">리뷰작성</button>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		
 	</section>
 	
 	
