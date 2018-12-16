@@ -89,6 +89,19 @@
 			<div class="container">
 				<div class="row">
 				
+				<div class="featured-work">
+
+						
+						<c:if test="${registerFailed}">
+							<div class="alert alert-warning alert-dismissible">
+ 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  								<strong><i class="fa fa-exclamation-circle" aria-hidden="true"></i> &nbsp;
+  									${exception.getMessage()}
+  								</strong>
+							</div>
+						</c:if>
+					</div>
+				
 					<form action="<c:url value='/user/register' />" method="post" role="form" class="contactForm">
 			<div class="form-group">
 				<input type="text" name="user_id" class="form-control input-text" id="user_id"

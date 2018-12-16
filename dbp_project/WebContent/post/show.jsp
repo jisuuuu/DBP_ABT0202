@@ -44,7 +44,7 @@
 		<div class="container">
 			<ul class="main-nav">
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
-				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
 				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
 				<li class="small-logo">
 					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
@@ -84,7 +84,9 @@
 				<div class="col-sm-12">
 					<div class="dtitle">
 						<h1><%=post.getTitle()%></h1>
-						[<%=post.getUsage() %>] [<%=post.getColor1() %>] [<%=post.getColor2() %>]&nbsp; <i class="fa fa-dashboard"></i> Down Count | <%=post.getDown_count() %>
+						<span class="label label-danger"><%=post.getUsage() %></span> 
+						<span class="label" style="color:<%=post.getColor1() %>"><%=post.getColor1() %></span>
+						<span class="label" style="color:<%=post.getColor2() %>"><%=post.getColor2() %></span>
 					</div>
 					<hr>
 				</div>
@@ -98,10 +100,11 @@
 					<div class="dwriter">
 						<h4><i class="fa fa-pencil" aria-hidden="true"></i> <b><%=post.getConsumer_id() %></b></h4>
 						<%=post.getUpload_date() %>
-						<br>
+						<br><br>
+						<p style="float:right"><i class="fa fa-dashboard"></i> Down Count | <%=post.getDown_count() %></p>
 						<c:choose>
     					<c:when test="${post.file_link eq null}">
-        					<a class="link2 delay-1s servicelink" href="<c:url value='/templet/${post.post_file}' />">다운로드</a>
+        					<a class="link2 delay-1s servicelink" href="<c:url value='/post/download' />?file=${post.post_file}&postId=${post.post_id}">다운로드</a>
     					</c:when>
     					<c:otherwise>
     						<a class="link2 delay-1s servicelink" href="${post.file_link}" target="_blank">링크로 이동</a>

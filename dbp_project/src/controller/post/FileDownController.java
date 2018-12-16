@@ -28,6 +28,7 @@ public class FileDownController implements Controller {
 		
 		pointDAO = new PointDAO();
 		pointDAO.TakePoint((String)session.getAttribute("user"));
+		pointDAO.RecordPoint("use", Integer.valueOf( (String)request.getParameter("postId") ), (String)session.getAttribute("user"));
 		
 		postDAO = new PostDAO();
 		postDAO.DownLoadCount( Integer.valueOf( (String)request.getParameter("postId") ) );

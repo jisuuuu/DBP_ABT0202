@@ -32,7 +32,7 @@ public class UserManager {
 	
 	public int create(User user) throws SQLException, ExistingUserException {
 		if (userDAO.existingUser(user.getUser_id()) == true) {
-			throw new ExistingUserException( user.getUser_id() + "는 존재하는 아이디입니다.");
+			throw new ExistingUserException( user.getUser_id() + "는 이미 존재하는 아이디입니다.");
 		}
 		return userDAO.create(user);
 	}
@@ -43,17 +43,24 @@ public class UserManager {
 		throws SQLException, UserNotFoundException {
 		User user = userDAO.findUser(userId);
 		
-		/*if (user == null) {
-			throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
-		}	*/	
 		return user;
 	}
+	
+	public User findUser2(String userId)
+			throws SQLException, UserNotFoundException {
+			User user = userDAO.findUser(userId);
+			
+			if (user == null) {
+				throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
+			}
+			return user;
+		}
 
 	
 
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
-		User user = findUser(userId);
+		User user = findUser2(userId);
 
 		if (!user.matchPassword(password)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");

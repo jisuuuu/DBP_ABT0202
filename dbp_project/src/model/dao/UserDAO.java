@@ -55,7 +55,7 @@ public class UserDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query ½ÇÇà
 			if (rs.next()) {						
-				User user = new User( user_id, rs.getString("password"), rs.getString("nickname"), rs.getInt("total_point"), 
+				User user = new User( user_id, rs.getString("nickname"), rs.getString("password"),rs.getInt("total_point"), 
 						rs.getString("interest1"), rs.getString("interest2"), rs.getString("interest3") );
 				return user;
 			}

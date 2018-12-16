@@ -73,4 +73,43 @@ public class PointDAO {
 			
 		}
 	
+
+	//point 기록하기
+		public int RecordPoint(String what, int post_id, String user_id ) throws SQLException {
+			
+			int result = 0;
+			String sql = "";
+			Object[] param = null;
+			
+			if (what.equals("use")) {
+				sql = "INSERT INTO POINT (use_or_get, point_id, post_id, consumer_id)"
+						+ "VALUES (?, POINT_ID_SEQUENCE.nextval, ?, ?)";;
+				param = new Object[] {"use", post_id, user_id} ;	
+			}
+			else {
+					sql = "INSERT INTO POINT (use_or_get, point_id, post_id, consumer_id)"
+							+ "VALUES (?, POINT_ID_SEQUENCE.nextval, ?, ?)";;
+					param = new Object[] {"get", post_id, user_id} ;	
+			}
+			
+			jdbcUtil.setSqlAndParameters(sql, param); 
+			
+
+			try {
+				result = jdbcUtil.executeUpdate();
+				
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.commit();
+				jdbcUtil.close();
+				
+			}
+			
+			return result;
+			
+		}
+
 }
+

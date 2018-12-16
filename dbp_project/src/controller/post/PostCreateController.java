@@ -17,7 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class PostCreateController implements Controller {
+
+	public class PostCreateController implements Controller {
+
 	
 	private static final Logger logger = LoggerFactory.getLogger(PostCreateController.class);
 
@@ -44,6 +46,8 @@ public class PostCreateController implements Controller {
 		
 		pointDAO = new PointDAO();
 		pointDAO.GivePoint((String)session.getAttribute("user"));
+		
+		pointDAO.RecordPoint("get", p2.getPost_id(), (String)session.getAttribute("user"));
 		
 		
 	

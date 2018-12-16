@@ -2,13 +2,13 @@
 <%@page import="java.util.*" %>
 <%@page import="model.Post" %>
 <%@page import="model.User" %>
-<%@page import="model.User" %>
 <%@page import="model.service.UserManager" %>
 <%@page import="model.service.UserNotFoundException" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
  	@SuppressWarnings("unchecked") 
 	List<Post> postList = (List<Post>)request.getAttribute("postList");
+	List<Post> recomList = (List<Post>)request.getAttribute("recomList");
  	String curUserId = (String)session.getAttribute("user");
 %>
 <!DOCTYPE html>
@@ -76,20 +76,81 @@
 
 
 	<section class="business-talking">
-		<div class="container">
+		<div class="container" >
 			<h2>"A+" 받는 템플릿</h2>
 		</div>
 	</section>
 	
-	
+
 	
 	<div class="container">
 	
+	
+	<c:if test="${empty recomList}">
+  		<br>
+  		<div class="alert alert-info alert-dismissible">
+  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  				회원가입 후 로그인을 하실 경우 <strong>"취향에 맞는 추천"</strong> 서비스가 제공 됩니다
+		</div>
+  	</c:if>
+	
+	<c:if test="${not empty recomList}"> 
+		<div class="container team-leader-block clearfix" style="margin-top:50px; text-align:center;">
+			<div class="row">
+    			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-left:50px;">
+    				<H3>추천 템플릿</H3>
+   					 <ol class="carousel-indicators">
+   					 	<c:forEach items="${recomList}" var="post" varStatus="status">
+   					 		<c:if test="${status.index == 0}">
+   					 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+   					 		</c:if>
+   					 		<c:if test="${status.index != 0}">
+   					 			<li data-target="#myCarousel" data-slide-to="${status.index}"></li>
+   					 		</c:if>
+   					 	</c:forEach>
+    				</ol>
+
+    
+    				<div class="carousel-inner">
+    					<c:forEach items="${recomList}" var="post" varStatus="status">
+   					 		<c:if test="${status.index == 0}">
+   					 			<div class="item active">
+       						 		<a href="<c:url value='/post/detail' />?postId=${post.post_id}">			           
+  										<img src="<c:url value='/img/${post.thumnail}' />" alt="${post.title}" style="width:100%;">
+  									</a>
+      							</div>
+   					 		</c:if>
+   					 		<c:if test="${status.index != 0}">
+   					 			<div class="item">
+        							<a href="<c:url value='/post/detail' />?postId=${post.post_id}">			           
+  										<img src="<c:url value='/img/${post.thumnail}' />" alt="${post.title}" style="width:100%;">
+  									</a>
+      							</div>
+   					 		</c:if>
+   					 	</c:forEach>
+     				</div>
+
+    
+    				<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      					<span class="fa fa-chevron-left" aria-hidden="true"></span>
+      					<span class="sr-only">Previous</span>
+    				</a>
+    				<a class="right carousel-control" href="#myCarousel" data-slide="next">
+      					<span class="fa fa-chevron-right" aria-hidden="true"></span>
+      					<span class="sr-only">Next</span>
+   				 </a>
+  			</div>
+		</div>
+		</div>
+	</c:if>
+	</div>
+	
+	
 		<section class="main-section paddind" id="Portfolio">
-		<!--main-section-start-->
+		
 		<div class="container">
 			<h2>POWERPOINT TEMPLATES</h2>
-			<h6>템플릿 이용해서 발표 뽀개버리기-! 개꿀🍯</h6><br>
+			<h6>🍯 템플릿을 모두 모았다 🍯</h6><br>
 			<div class="portfolioFilter">
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">All</a></li>
@@ -100,10 +161,24 @@
 				</ul>
 			</div>
 
+			
+			
+			<div style="float:right">
+				<input class="form-control" id="myInput" type="text" placeholder="Search Color"><br>
+				<span class="label label-default">
+					<a href="<c:url value='/post/list' />" style="color:white;">최신순 정렬</a> 
+				</span>&nbsp;
+				<span class="label label-default">
+					<a href="<c:url value='/post/list' />?sort=downcount" style="color:white;">다운로드 카운트순 정렬</a>
+				</span>
+				<br><br>
+			</div>
+
 		</div>
 		<div class="portfolioContainer wow fadeInUp delay-04s">
+			
 			<c:forEach items="${postList}" var="post" varStatus="status">
-				<div class="Portfolio-box ${post.usage}">	
+				<div class="Portfolio-box ${post.usage}" id="${post.color[0]} ${post.color[1]}">	
 					 <a href="<c:url value='/post/detail' />?postId=${post.post_id}">			           
   						<img src="<c:url value='/img/${post.thumnail}' />" alt="" width="350px" height="263px">
   					</a>         
@@ -111,12 +186,20 @@
 
 				</div>
   			</c:forEach>
+  			
 		</div>
 		
 	</section>
 	
 		
 	</div>
+	
+	
+	
+  
+  
+
+
 	
 	<footer class="footer">
 		<div class="container">
@@ -129,13 +212,32 @@
 	</footer>
 	
 	
-	
-	
-	
-	
-	
-	
-	
+<script>
+	$(document).ready(function() {
+        $("#recommendRegion").hide();
+
+        $("input.btn").click(function() {
+
+            $("#recommendRegion").show();
+
+        });
+
+    });
+</script>
+	<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+	  
+	  
+	  
+    var value = $(this).val().toLowerCase();
+    $(".Portfolio-box").filter(function() {
+      $(this).toggle($(this).attr("id").toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 	
 	<script type="text/javascript">
 		$(document).ready(function(e) {

@@ -19,7 +19,9 @@ public class MainController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	
-    	List<Post> postList = postDAO.findPostList();
+
+    	List<Post> postList = postDAO.findPostListDown("main");
+    	
     	request.setAttribute("postList", postList);	
     	
     	return "/main/main.jsp";
