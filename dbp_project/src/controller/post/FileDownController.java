@@ -34,8 +34,6 @@ public class FileDownController implements Controller {
 		postDAO.DownLoadCount( Integer.valueOf( (String)request.getParameter("postId") ) );
 		
 		ServletContext context = request.getServletContext();
-		
-		
 		String path = context.getRealPath("/templet");
 		
 		

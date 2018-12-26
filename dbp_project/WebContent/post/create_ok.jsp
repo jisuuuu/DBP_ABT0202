@@ -43,8 +43,7 @@
 		<div class="container">
 			<ul class="main-nav">
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
-				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
-				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
 				<li class="small-logo">
 					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				</li>
@@ -55,7 +54,6 @@
     				UserManager manager = UserManager.getInstance();
     				User us = manager.findUser(curUserId);
     			%>
-    			
 				<c:choose>
     				<c:when test='${sessionScope.user eq null}'>
     					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>

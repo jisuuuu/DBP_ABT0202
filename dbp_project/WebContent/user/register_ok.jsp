@@ -45,33 +45,36 @@
 </head>
 <body>
    <nav class="main-nav-outer" id="test">
-      <div class="container">
-         <ul class="main-nav">
-            <li><a href="<c:url value='/main/main' />">에받템</a></li>
-            <li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
-            <li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
-            <li class="small-logo">
-               <a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
-            </li>
-            <li><a href="<c:url value='/post/create/form' />">글작성</a></li>
+		<div class="container">
+			<ul class="main-nav">
+				<li><a href="<c:url value='/main/main' />">에받템</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
+				<li class="small-logo">
+					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
+				</li>
+				<li><a href="<c:url value='/post/create/form' />">글작성</a></li>
+				
+				<!-- 로그인여부에 따라서 다름 -->
+				<%
+    				UserManager manager = UserManager.getInstance();
+    				User us = manager.findUser(curUserId);
+    			%>
+    			
+				<c:choose>
+    				<c:when test='${sessionScope.user eq null}'>
+    					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
+      					<li><a href="<c:url value='/user/login/form' />">Login</a></li>
+    				</c:when>
+    				<c:otherwise>
+      					<li><a href="<c:url value='/user/mypage'><c:param name='user_id' value='<%=us.getUser_id() %>'/></c:url>"><%=curUserId%>&nbsp;님</a></li>
+      					<li><a href="<c:url value='/user/logout' />">Logout</a></li>
+    				</c:otherwise>
+    			</c:choose>
 
-            <!-- 로그인여부에 따라서 다름 -->
-            <c:choose>
-               <c:when test='${sessionScope.user eq null}'>
-                  <li><a href="<c:url value='/user/register/form' />">Sign
-                        Up</a></li>
-                  <li><a href="<c:url value='/user/login/form' />">Login</a></li>
-               </c:when>
-               <c:otherwise>
-                  <li><a><%=curUserId%>&nbsp;님</a></li>
-                  <li><a href="<c:url value='/user/logout' />">Logout</a></li>
-               </c:otherwise>
-            </c:choose>
-
-         </ul>
-         <a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
-      </div>
-   </nav>
+			</ul>
+			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</nav>
    
    <section class="main-section client-part" id="client">
       <!--main-section client-part-start-->

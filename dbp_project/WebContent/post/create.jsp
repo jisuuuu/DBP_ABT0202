@@ -40,8 +40,7 @@
 		<div class="container">
 			<ul class="main-nav">
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
-				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
-				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
 				<li class="small-logo">
 					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				</li>
@@ -52,7 +51,6 @@
     				UserManager manager = UserManager.getInstance();
     				User us = manager.findUser(curUserId);
     			%>
-    			
 				<c:choose>
     				<c:when test='${sessionScope.user eq null}'>
     					<li><a href="<c:url value='/user/register/form' />">Sign Up</a></li>
@@ -84,7 +82,36 @@
 			
 			<div class="container">
 				<div class="row">
-					<form action="<c:url value='/post/create' />" method="post" role="form" class="contactForm" enctype="multipart/form-data">
+				<script>
+					function check() {
+						
+						var sum = 0;
+						var count = fr.color.length;
+						  for(var i=0; i < count; i++ ){
+						       if( fr.color[i].checked == true ){
+							    sum += 1;
+								}
+						  } 
+						if(sum < 2){
+							alert("색상 " + (2 - sum) + "개를 더 선택해주세요"  );
+							return false;}
+						  
+  						if(fr.post_title.value == "") {
+							alert("제목은 필수 항목 입니다");
+							fr.post_title.focus();
+							return false;}
+  						else if(fr.post_content.value == "") {
+							alert("내용은 필수 항목 입니다");
+							fr.post_content.focus();
+							return false;}
+  						
+  						
+						else return true;
+
+				}
+			</script>
+				
+					<form  name="fr" action="<c:url value='/post/create' />" method="post" role="form" class="contactForm" onsubmit="return check()" enctype="multipart/form-data">
 					
 						<div class="form-group">
   							<select class="form-control" name="usage" id="usage">
@@ -95,19 +122,44 @@
   							</select>
   						</div>
   						
+  				<script language=Javascript>
+
+				var maxChecked = 2;   //선택가능 갯수
+				var totalChecked = 0; // 설정 끝
+
+				function CountChecked(field) {
+    				if (field.checked)
+        				totalChecked += 1;
+    				else
+       					totalChecked -= 1;
+
+    				if (totalChecked > maxChecked) {
+        				alert ("최대 2개 까지만 가능합니다.");
+    					field.checked = false;
+    					totalChecked -= 1;
+    				}
+    
+				}
+
+				function ResetCount(){
+    				totalChecked = 0;
+				}
+
+			</script>
+  						
   						<div class="form-group">
-  							<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="red" checked> 빨강</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="orange"> 주황</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="yellow"> 노랑</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="green"> 초록</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="blue"> 파랑</label>
-           					<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="purple"> 보라</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="gray"> 회색</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="pink"> 핑크</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="black"> 검정</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="white"> 흰색</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="navy"> 네이비</label>
-            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="lime"> 라임</label>
+  							<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="red" onclick=CountChecked(this)> 빨강</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="orange" onclick=CountChecked(this)> 주황</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="yellow" onclick=CountChecked(this)> 노랑</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="green" onclick=CountChecked(this)> 초록</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="blue" onclick=CountChecked(this)> 파랑</label>
+           					<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="purple" onclick=CountChecked(this)> 보라</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="gray" onclick=CountChecked(this)> 회색</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="pink" onclick=CountChecked(this)> 핑크</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="black" onclick=CountChecked(this)> 검정</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="white" onclick=CountChecked(this)> 흰색</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="navy" onclick=CountChecked(this)> 네이비</label>
+            				<label class="checkbox-inline"><input type="checkbox" name="color" id="color" value="lime" onclick=CountChecked(this)> 라임</label>
             			</div>
 					
 						<div class="form-group">

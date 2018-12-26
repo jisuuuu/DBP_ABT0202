@@ -35,8 +35,7 @@ public class RequestMapping {
         mappings.put("/post/detail", new PostDetailController());
         mappings.put("/post/download", new FileDownController());
         
-        //초기 부트스트랩
-        mappings.put("/boot", new ForwardController("bootstrap.jsp"));
+        
     }
 
     public Controller findController(String uri) {	

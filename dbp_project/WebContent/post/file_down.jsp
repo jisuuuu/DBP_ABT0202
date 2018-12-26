@@ -16,41 +16,34 @@ try {
  
     String header = request.getHeader("User-Agent");
     
-    // ISO-8895-1 인코딩은 대부분의 브라우저에 설정된 기본 문자셋
+    
     String path = new String(request.getAttribute("path").toString().getBytes("utf-8"), "ISO-8859-1");
     String fileName = new String(request.getAttribute("fileName").toString().getBytes("utf-8"), "ISO-8859-1");
     String viewFileName = "";
     
-    if (header.contains("MSIE") || header.contains("Trident")) {        // 익스플로러의 경우 한글처리
+    if (header.contains("MSIE") || header.contains("Trident")) {      
         viewFileName = URLEncoder.encode(request.getAttribute("viewFileName").toString(),"UTF-8").replaceAll("\\+", "%20");
-    } else {                                                            // 익스플로러 이외 한글처리
+    } else {                                                            
         viewFileName = new String(request.getAttribute("viewFileName").toString().getBytes("utf-8"), "ISO-8859-1");
     }
     
  
     File file = new File(path+fileName);
  
-    response.reset();        // 모두 초기화 된다.
+    response.reset();        
  
     response.setContentType("application/octer-stream");
  
-    // 해더에 내가 원하는 전송할 파일 이름을 설정
+   
     response.setHeader("Content-Disposition", "attachment;filename=" + viewFileName + "");
-    
-    response.setHeader("Content-Transper-Encoding", "binary");    // 인코딩 설정 변경
-    
-    response.setContentLength((int) file.length());                // 파일 사이즈 설정
-    
-    response.setHeader("Pargma", "no-cache");
-    
-    response.setHeader("Expires", "-1");
+    response.setHeader("Content-Transper-Encoding", "binary");    
+    response.setContentLength((int) file.length());                
+    response.setHeader("Pargma", "no-cache");response.setHeader("Expires", "-1");
  
     byte[] data = new byte[2048];
     
     FileInputStream fis = new FileInputStream(file);
-    
     BufferedInputStream bis = new BufferedInputStream(fis);
-     
     BufferedOutputStream fos = new BufferedOutputStream(response.getOutputStream());
  
     int count = 0;
@@ -66,7 +59,7 @@ try {
         fos.close();
     
     
-    // file.delete();   사용자 다운 시 파일을 삭제하려면 추가
+    
 } catch (Exception e) {
     System.out.println("download error : " + e);
 } finally{

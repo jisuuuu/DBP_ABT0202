@@ -44,8 +44,7 @@
 		<div class="container">
 			<ul class="main-nav">
 				<li><a href="<c:url value='/main/main' />">에받템</a></li>
-				<li><a href="<c:url value='/user/list' />">사용자리스트</a></li>
-				<li><a href="<c:url value='/boot' />">부트스트랩 원본</a></li>
+				<li><a href="<c:url value='/post/list' />">글 리스트</a></li>
 				<li class="small-logo">
 					<a href="<c:url value='/main/main' />"><img src="<c:url value='/img/small-blogo.png' />" alt=""></a>
 				</li>
@@ -101,8 +100,40 @@
 							</div>
 						</c:if>
 					</div>
+					
+					
+					<script>
+					function check() {
+						
+						var sum = 0;
+						var count = fr.interest.length;
+						  for(var i=0; i < count; i++ ){
+						       if( fr.interest[i].checked == true ){
+							    sum += 1;
+								}
+						  } 
+						if(sum < 3){
+							alert("관심 색상 " + (3 - sum) + "개를 더 선택해주세요"  );
+							return false;}
+		
+  						if(fr.user_id.value == "") {
+							alert("아이디는 필수 항목 입니다");
+							fr.user_id.focus();
+							return false;}
+  						else if(fr.password.value == "") {
+							alert("비밀번호는 필수 항목 입니다");
+							fr.password.focus();
+							return false;}
+  						else if(fr.nickname.value == "") {
+							alert("닉네임은 필수 항목 입니다");
+							fr.nickname.focus();
+							return false;}
+						else return true;
+
+				}
+			</script>
 				
-					<form action="<c:url value='/user/register' />" method="post" role="form" class="contactForm">
+					<form name="fr" action="<c:url value='/user/register' />" method="post"  onsubmit="return check()" role="form" class="contactForm">
 			<div class="form-group">
 				<input type="text" name="user_id" class="form-control input-text" id="user_id"
 					placeholder="Id" data-rule="minlen:4"

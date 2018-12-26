@@ -43,6 +43,35 @@ public class PointDAO {
 			return result;
 			
 		}
+		
+		//review point Àû¸³
+				public int GiveReviewPoint(String user_id) throws SQLException {
+					
+					int result = 0;
+					String sql = "";
+					Object[] param = null;
+					
+					sql = "UPDATE CONSUMER SET total_point = total_point + 1 WHERE consumer_id = ?";
+					param = new Object[] {user_id} ;	
+					
+					jdbcUtil.setSqlAndParameters(sql, param); 
+					
+
+					try {
+						result = jdbcUtil.executeUpdate();
+						
+					} catch (Exception ex) {
+						jdbcUtil.rollback();
+						ex.printStackTrace();
+					} finally {
+						jdbcUtil.commit();
+						jdbcUtil.close();
+						
+					}
+					
+					return result;
+					
+				}
 	
 	//point ¼Ò¸ê
 		public int TakePoint(String user_id) throws SQLException {
